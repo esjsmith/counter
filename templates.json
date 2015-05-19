@@ -1,0 +1,72 @@
+{
+    "ysmTemplate": {
+        "specType": "bm",
+        "outName": "ysm",
+        "outSentence": "A <span id='ysmtotal'></span>-cell count reveals <span class='ysm' id='ysmblast'></span>% blasts, <span id='ysmpro'></span>% promyelocytes/myelocytes, <span id='ysmgran'></span>% maturing granulocyte forms, <span id ='ysmeryth'></span>% erythroid forms, <span id='ysmlymph'></span>% lymphocytes, <span id='ysmplasma'></span>% plasma cells, <span id='ysmbaso'></span>% basophils/mast cells, and <span id='ysmmono'></span>% monocytes.",
+        "outCodes": {
+            "A": "blast",
+            "S": "pro",
+            "D": "gran",
+            "F": "eryth",
+            "Z": "baso",
+            "X": "eos",
+            "C": "plasma",
+            "V": "lymph",
+            "B": "mono",
+            "tot": "total"
+        }
+    },
+    "pdxTemplate": {
+        "specType": "bm",
+        "outName": "pdx",
+        "outSentence": "Number of cells counted: <span  id='pdxtotal'>ffff</span><br><br>Cell Type|Percent|Ref. Range|<br>Blasts | <span  id='pdxblast'></span> %| 0.3 - 3.0 %|<br>Immature Myeloid | <span  id='pdxpro'></span> %| 12.0 - 21.0 %|<br>Mature Myeloid | <span  id='pdxgran'></span> %| 35.0 - 55.0 %|<br>Eosinophils | <span  id='pdxeos'></span> %| 1.0 - 3.0 %|<br>Basophils | <span  id='pdxbaso'></span> %| 0.0 - 1.0 %|<br>Lymphocytes | <span  id='pdxlymph'></span> %| 10.0 - 15.0 %|<br>Plasma Cells | <span  id='pdxplasma'></span> %| 0.0 - 1.0 %|<br>Monocytes | <span  id='pdxmono'></span> %| 0.0 - 1.0 %|<br>Erythroid | <span  id='pdxeryth'></span> %| 15.0 - 25.0 %|<br>M:E ratio| _ |2 - 4:1|",
+        "outCodes": {
+            "A": "blast",
+            "S": "pro",
+            "D": "gran",
+            "F": "eryth",
+            "Z": "baso",
+            "X": "eos",
+            "C": "plasma",
+            "V": "lymph",
+            "B": "mono",
+            "tot": "total"
+
+        }
+    },
+    "gpbTemplate": {
+        "specType": "pb",
+        "outName": "gpb",
+        "outSentence": "Number of cells counted: <span id='gpbtotal'></span><br><br>Blasts: <span id ='gpbblast'></span><br>Neutrophil precursors: <span id='gpbpro'></span><br>Bands: <span id='gpbband'></span><br>Basophils: <span id='gpbbaso'></span><br>Eosinophils: <span id='gpbeos'></span><br>Monocytes: <span id='gpbmono'></span><br>Lymphocytes: <span id='gpblymph'></span><br><span id='labelother'>Other: </span><span id='gpbother'></span>",
+        "outCodes": {
+            "A": "blast",
+            "S": "pro",
+            "D": "band",
+            "F": "neut",
+            "Z": "baso",
+            "X": "eos",
+            "C": "mono",
+            "V": "lymph",
+            "B": "other",
+            "tot": "total"
+        }
+
+    },
+    "mghTemplate": {
+        "specType": "pb",
+        "outName": "mgh",
+        "outSentence": "A <span id='mghtotal'></span>-cell differential count reveals <span id='mghgran'></span>% myeloid precursors, <span id='mgheryth'></span>% erythroid precursors, <span id='mghlymph></span>% lymphocytes, <span id='mghmono'></span>% monocytes, <span id='mgheos'></span>% eosinophils, <span id='mghbaso'></span>% basophils, <span id='mghpro'></span>% promyelocytes, <span id='mghblast'></span>% blasts and <span id='mghplasma'></span>% plasma cells." ,
+        "outCodes": {
+            "A": "blast",
+            "S": "pro",
+            "D": "gran",
+            "F": "eryth",
+            "Z": "baso",
+            "X": "eos",
+            "C": "plasma",
+            "V": "lymph",
+            "B": "mono",
+            "tot": "total"
+        }
+    }
+}
