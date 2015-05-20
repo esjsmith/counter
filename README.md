@@ -1,18 +1,19 @@
-# counter
+counter
 
 # Description
 This is a manual differential counter for use in hematopathology practices.
 
 # Instructions
 The app is relatively simple to use.
-    1. Load up the app by navigating to the `index.php`.
-    2. Then, choose whether the count represents a peripheral blood specimen
+
+1.  Load up the app by navigating to the `index.php`.
+2.  Then, choose whether the count represents a peripheral blood specimen
     or a bone marrow aspirate; this choice will load a slightly different
     set of tags above the individual squares in the counter display.
-    3. Start counting. The keyboard keys corresponding to the cell type is
+3.  Start counting. The keyboard keys corresponding to the cell type is
     displayed at the bottom of each column. The cell type this corresponds to
     is at the tope of each column.
-    4. Percentages are calculated in real time, as there is two-way data
+4.  Percentages are calculated in real time, as there is two-way data
     binding between the input boxes and the output percentage boxes.
 
 # Customization
