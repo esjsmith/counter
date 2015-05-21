@@ -133,8 +133,14 @@
 	Below is the script to run the counter. I hope.
 
 -->
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="/libraries/jquery-2.1.4.js"></script>
 <script src="scripts/keypress.js"></script>
 <script src="scripts/counter.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/routes.js"></script>
+<script src="scripts/collections.js"></script>
+<script src="scripts/models.js"></script>
+<script src="scripts/views.js"></script>
+
 </body>
 </html>
