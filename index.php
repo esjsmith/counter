@@ -90,6 +90,7 @@
 </div> <!-- div-counter -->
 
 
+
 <div class="output">
 
 <!--This is where the actual tabs will live as an ul.-->
@@ -97,8 +98,8 @@
     <ul class="tabs">
         <li class="tab-link current" data-tab="tab-1">YSM Template</li>
         <li class="tab-link" data-tab="tab-2">PDX Template</li>
-	<li class="tab-link" data-tab="tab-3">MGH Template</li>
-	<li class="tab-link" data-tab="tab-4">Periph Blood</li>
+	    <li class="tab-link" data-tab="tab-3">MGH Template</li>
+	    <li class="tab-link" data-tab="tab-4">Periph Blood</li>
     </ul>
 
     <div id='tab-1' class="tab-content current">
@@ -129,10 +130,8 @@
 </div><!-- output -->
 
 </div><!--content body-->
-<!--
-	Below is the script to run the counter. I hope.
-
--->
+<!--BLOCK: Handlebars template for the output field-->
+<!--END BLOCK-->
 <script src="/libraries/jquery-2.1.4.js"></script>
 <script src="scripts/keypress.js"></script>
 <script src="scripts/counter.js"></script>

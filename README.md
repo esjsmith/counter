@@ -19,11 +19,15 @@ The app is relatively simple to use.
 ## Customization
 Customization can be done via the `templates.json` file by adding the
 morphologic cell type corresponding to each key. For now, the keyboard
-keys are hard-coded as `A` through `G` and `Z` through `B` on a US English
+keys are hard-coded as `A` through `F` and `Z` through `B` on a US English
 QWERTY keyboard. Since this can obviously cause problems with QWERTZ and
 Dvorak keyboards, customization will eventually be built in. Until then,
 the JavaScript can be changed directly in the `counter.js` file to allow
 a different keyboard layout.
+* `keyboard.json`: This is the file in which the keyboard map can be set.
+ The default is using the left two rows on a `en_US` QWERTY keyboard: `A` through 
+ `F` and `Z` through `B`. If, for example, a QWERTZ keyboard is being used,
+ this is the file to change as it will change the key presses listened to.
 
 ## Dependencies
 * jQuery version 1.11.2
