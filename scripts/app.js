@@ -4,6 +4,3 @@
 
 
 // HANDLEBARS HELPERS
-Handlebars.registerHelper('each', function(){
-
-});

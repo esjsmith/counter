@@ -3,8 +3,8 @@
  */
 
 (function($){
-    app.m.KeysRow = Backbone.Model.extend({
-        url: 'settings/keyboard.json'
+    app.m.CounterTable = Backbone.Model.extend({
+        url: 'settings/templates.json'
 
     });
 

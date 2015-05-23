@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Making a Table</title>
+    <link rel="stylesheet" type="text/css" href="/libraries/bootstrap-3.3.4-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/counter.css">
+</head>
+<body>
+
+<div id="counter-tbl"></div>
+
+<script type="text/x-handlebars-template" id="table-head-tpl">
+<!--This is for the top row of the table-->
+    <th class="{{rowName}}">
+        {{#each cellData}}
+            <td> {{{this}}} </td>
+        {{/each}}
+    </th>
+
+</script>
+
+<script type="text/x-handlebars-template" id="table-spinner-tpl">
+    <!--This is for the row of spinners-->
+    <tr class="{{rowName}}">
+            <td>Counter:</td>
+        {{#each cellData}}
+            <td>
+                <input class='cellAmount' type='number'id='numcell{{{this}}}'>
+            </td>
+        {{/each}}
+    </tr>
+</script>
+
+<script type="text/x-handlebars-template" id="table-percent-tpl">
+    <tr class="{{rowName}}">
+        <td>Percent(%):</td>
+    {{#each cellData}}
+        <td id="percentcell{{{this}}}"></td>
+    {{/each}}
+    </tr>
+</script>
+
+<script type="text/x-handlebars-template" id="table-row-tpl">
+<!--This is for the rest of the table-->
+    <tr class="{{rowName}}">
+        {{#each cellData}}
+        <td> {{{this}}} </td>
+        {{/each}}
+    </tr>
+
+</script>
+
+<script src="/libraries/jquery-2.1.4.js"></script>
+<script src="/libraries/handlebars-v3.0.3.js"></script>
+<script src="scripts/keypress.js"></script>
+<script src="/libraries/underscore.js"></script>
+<script src="/libraries/backbone.js"></script>
+
+<script src="scripts/counter.js"></script>
+
+<script src="scripts/defines.js"></script>
+<script src="scripts/collections.js"></script>
+<script src="scripts/models.js"></script>
+<script src="scripts/views.js"></script>
+<script src="scripts/routes.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+    // This is how to utilize data gotten from a `fetch` call.
+
+    app.x = function(data){
+        // console.log(data);
+    };
+    var testMod = (new app.m.CounterTable());
+    testMod.fetch({
+        success: function(response){
+            app.x(response.attributes);
+        }
+    });
+
+
+    new app.v.MakeTable;
+
+</script>
+
+</body>
+</html>
