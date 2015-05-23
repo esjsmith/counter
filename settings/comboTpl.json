@@ -1,0 +1,20 @@
+[
+    {
+        "tplCode": "ysm",
+        "tplName": "Yale SOM",
+        "specType": "bm",
+        "outSentence": "A {{total}}-cell count reveals {{blasts}}% blasts, {{pro}}% promyelocytes/myelocytes, {{gran}}% maturing granulocyte forms, {{eryth}}% erythroid forms, {{lymph}}% lymphocytes, {{plasma}}% plasma cells, {{baso}}% basophils/mast cells, and {{mono}}% monocytes.",
+        "outCodes": {
+            "A": "blast",
+            "S": "pro",
+            "D": "gran",
+            "F": "eryth",
+            "Z": "baso",
+            "X": "eos",
+            "C": "plasma",
+            "V": "lymph",
+            "B": "mono",
+            "tot": "total"
+        }
+    }
+]
