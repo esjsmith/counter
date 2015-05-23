@@ -17,17 +17,23 @@ The app is relatively simple to use.
     binding between the input boxes and the output percentage boxes.
 
 ## Customization
-Customization can be done via the `templates.json` file by adding the
-morphologic cell type corresponding to each key. For now, the keyboard
-keys are hard-coded as `A` through `F` and `Z` through `B` on a US English
-QWERTY keyboard. Since this can obviously cause problems with QWERTZ and
-Dvorak keyboards, customization will eventually be built in. Until then,
-the JavaScript can be changed directly in the `counter.js` file to allow
-a different keyboard layout.
-* `keyboard.json`: This is the file in which the keyboard map can be set.
- The default is using the left two rows on a `en_US` QWERTY keyboard: `A` through 
- `F` and `Z` through `B`. If, for example, a QWERTZ keyboard is being used,
- this is the file to change as it will change the key presses listened to.
+Customization can be done via the `comboTpl.json` file in the `settings` folder. 
+The parts of this JSON file are:
+1. `tplCode`: An easy to type code that will be used to refer to the template in
+the app code.
+2. `tplName`: A descriptive (but not too long) name for the template that is rendered
+into the tabbed output view.
+3. `specType`: For now, this only takes either `bm` ("bone marrow") or `pb` ("peripheral blood").
+Using anything else will cause the template not to be rendered.
+4. `outSentence`: Output sentence using a Handlebars-type format. The tags in the
+double-stashes (`{{example}}`) should match exactly the codes in the next section of the 
+tplJSON.
+5. `outCodes`: This contains JSON objects. In each `{"key": "value"}`, the key represents
+the one letter keyboard key. The "value" represents the abbreviation biological cell type.
+ This abbreviation must match the cell code abbreviation that was written into the Handlebars
+ template in number 2 (`outSentence`). Sorry to use the word key to represent both the keyboard
+ key and the object key. If you can think of a clearer way to word this, then please
+ let me know.
 
 ## Dependencies
 * jQuery version 1.11.2
