@@ -7,4 +7,11 @@
         url: 'settings/keyboard.json'
 
     });
+
+    app.m.Test = Backbone.Model.extend({
+        defaults: {
+            a: 'b',
+            d: 'c'
+        }
+    });
 })(jQuery);

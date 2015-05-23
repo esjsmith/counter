@@ -31,7 +31,16 @@
 <script src="scripts/routes.js"></script>
 <script src="scripts/app.js"></script>
 <script>
+    var testMod = (new app.m.KeysRow());
+    testMod.fetch({
+        success: function(response){
+            console.log(response.attributes.keysUsed);
+        }
+    });
+
+
     new app.v.MakeTable;
+
 </script>
 
 </body>

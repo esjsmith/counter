@@ -10,7 +10,6 @@
         tagName: 'tr',
         id: 'keyRow',
         initialize: function(response){
-            console.log(response);
             return this;
         }
     });
@@ -26,10 +25,12 @@
             // TODO: call in the data object from tblData
             // TODO: render table one by one and then append to DOM
             // TODO: listenTo keypresses
-            this.model = new app.m.KeysRow();
-            console.log(this.model);
-            var mkKeyRow = new app.v.MkKeyRow({model: this.model});
-            console.log(mkKeyRow);
+            this.model = (new app.m.KeysRow()).fetch({reset: true});
+            this.mkKeyRow();
+        },
+        mkKeyRow: function(){
+            var keyRow = new app.v.MkKeyRow({model: this.model});
         }
     });
+
 })(jQuery);
