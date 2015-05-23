@@ -8,7 +8,7 @@
 
 <table id="counter-tbl"><!--put counter table here--></table>
 
-<script type="text/x-handlebars-template" id="table-hpl">
+<script type="text/x-handlebars-template" id="table-tpl">
     {{#each data}}
         <tr id="key-row">
             <td>{{keysUsed}}</td>
@@ -17,13 +17,22 @@
 </script>
 
 <script src="/libraries/jquery-2.1.4.js"></script>
+<script src="/libraries/handlebars-v3.0.3.js"></script>
 <script src="scripts/keypress.js"></script>
+<script src="/libraries/underscore.js"></script>
+<script src="/libraries/backbone.js"></script>
+
 <script src="scripts/counter.js"></script>
-<script src="scripts/routes.js"></script>
+
+<script src="scripts/defines.js"></script>
 <script src="scripts/collections.js"></script>
 <script src="scripts/models.js"></script>
 <script src="scripts/views.js"></script>
+<script src="scripts/routes.js"></script>
 <script src="scripts/app.js"></script>
+<script>
+    new app.v.MakeTable;
+</script>
 
 </body>
 </html>

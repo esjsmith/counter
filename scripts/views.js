@@ -3,21 +3,16 @@
  */
 
 (function($){
-    app.v.MakeTable = new (Backbone.View.extend({
+    app.v.MakeTable = Backbone.View.extend({
         tagName: 'td',
-        keyMap: '',
-        model: '',
+        model: new app.m.KeysUsed(),
         template: Handlebars.compile($('#table-tpl').html()),
         target: $('#counter-tbl'), // This is where the rendered tpl will go
-        tblData: function(){
-            // TODO: Verify that the keysUsed.length === outputTpl.length
-            // Put out the data in an object {keysUsed: [...], cellNames: [...]
-            $.getJSON('settings/outputTpl.json', function(data){})
-        },
-        initialize: {
+
+        initialize: function(response) {
             // TODO: call in the data object from tblData
             // TODO: render table
             // TODO: listenTo keypresses
         }
-    }));
+    });
 })(jQuery);

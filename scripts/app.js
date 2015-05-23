@@ -4,9 +4,9 @@
 
 // Define the app namespace
 
-var app = {
-    v: {type: 'views'},
-    r: {type: 'routers'},
-    c: {type: 'collections'},
-    m: {type: 'models'}
-};
+
+
+// HANDLEBARS HELPERS
+Handlebars.registerHelper('each', function(){
+
+});
