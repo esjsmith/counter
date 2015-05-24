@@ -91,7 +91,7 @@
             // cell will be labeled with an id of `tot`
 
             var x = {rowName: 'percentrow',
-                cellData: ['Percent (%):'].concat(_.keys(data), ['tot'])
+                cellData: _.keys(data).concat(['tot'])
             };
 
             // Finally, append the row just made to the item that has been building

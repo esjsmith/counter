@@ -3,27 +3,42 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Making a Table</title>
-    <link rel="stylesheet" type="text/css" href="/libraries/bootstrap-3.3.4-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="styles/counter.css">
 </head>
 <body>
+<div class="container">
+    <div class="wood">
+        <div class="div-counter">
+            <div id="counter-tbl"></div>
+            <div id = 'buttons'>
+                <label for="specimenType">Specimen Type</label>
+                <select id="specimenType">
+                    <option value="bm" selected="selected">Bone Marrow</option>
+                    <option value="pb">Peripheral Blood</option>
+                </select>
+                <button id='btnStartCount'>Start Count</button>
+                <button id='btnCountDone'>Count Done</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div id="counter-tbl"></div>
-
+    <!--HDB TEMPLATE SCRIPTS-->
 <script type="text/x-handlebars-template" id="table-head-tpl">
 <!--This is for the top row of the table-->
-    <th class="{{rowName}}">
+    <tr class="{{rowName}}">
+            <th></th>
         {{#each cellData}}
-            <td> {{{this}}} </td>
+            <th> {{{this}}} </th>
         {{/each}}
-    </th>
+    </tr>
 
 </script>
 
 <script type="text/x-handlebars-template" id="table-spinner-tpl">
     <!--This is for the row of spinners-->
     <tr class="{{rowName}}">
-            <td>Counter:</td>
+            <td class="lbl-column">Counter:</td>
         {{#each cellData}}
             <td>
                 <input class='cellAmount' type='number'id='numcell{{{this}}}'>
@@ -34,7 +49,7 @@
 
 <script type="text/x-handlebars-template" id="table-percent-tpl">
     <tr class="{{rowName}}">
-        <td>Percent(%):</td>
+        <td class="lbl-column">Percent(%):</td>
     {{#each cellData}}
         <td id="percentcell{{{this}}}"></td>
     {{/each}}
@@ -48,8 +63,8 @@
         <td> {{{this}}} </td>
         {{/each}}
     </tr>
-
 </script>
+<!--END HDB TEMPLATE SCRIPTS-->
 
 <script src="/libraries/jquery-2.1.4.js"></script>
 <script src="/libraries/handlebars-v3.0.3.js"></script>

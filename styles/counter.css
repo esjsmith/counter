@@ -14,33 +14,52 @@ input.cellAmount {
 	background-color: azure;
 	}
 
-
-#row-label {
-		text-align: right;
-}
-
 .instructions{
     text-decoration: underline;
     font-weight: bold;
 }
+div.container{
+}
+
+div.wood{
+    margin: auto;
+    overflow: auto;
+    width: 800px;
+    height: 200px;
+    background-image: url(/counter/images/wood-pattern.jpg);
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    border: solid #000000 2px;
+}
+
+div.wood:after{
+    content: "";
+    display: block;
+    clear: both;
+}
 
 div.div-counter {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1em;
-	margin-bottom: 1em;
+    margin: auto;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	position: relative;
 	text-align: center;
 	width: 700px;
-	border: 1px solid black;
+	border: 1px solid goldenrod;
 	background-color: #90C3E6;
+
 
 }
 
-.percentcell, .namecell, .datacell {
+.percentcell, .namecell th, .datacell {
 	background-color: white;
+    border: #000000 1px solid;
+}
+
+.percentcell, .datacell, .percentrow {
+    height: 23px;
+    background-color: white;
 }
 
 div.output {
@@ -50,7 +69,11 @@ div.output {
 	margin-right: auto;
 	margin-top: 3em;
 	margin-bottom: 3em;
+}
 
+table#counter{
+    border-collapse: separate;
+    border-spacing: 2px;
 }
 
 table#counter, label {
