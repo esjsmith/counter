@@ -162,7 +162,7 @@ function updateBmPb(e){
 
 $(document).ready(function() {
     resetCounter();
-    xhr.open('POST', 'templates.json', true); // Open up the template file
+    xhr.open('POST', 'settings/templates.json', true); // Open up the template file
     xhr.send(null);                          // Send the request
 
     	$('ul.tabs li').click(function(){
