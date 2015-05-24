@@ -5,8 +5,6 @@
 (function($){
     'use strict';
 
-
-
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',
         id: 'counter',
@@ -18,8 +16,6 @@
         target:  $('#counter-tbl'), // This is the div where the rendered tpl will go
 
         initialize: function() {
-            // TODO: call in the data object from tblData
-            // TODO: render table one by one and then append to DOM
             // TODO: listenTo keypresses
 
             // Instantiate the CounterTable model to cause it to get the
@@ -112,10 +108,30 @@
 
             // Finally, append the row just made to the item that has been building
             this.$el.append(this.templateSpinner(x));
-            console.log(this.el);
 
             return this;
 
+        }
+    });
+
+    app.v.CreateOuputField = Backbone.View.extend({
+        tagName: 'div',
+        id: 'tabs',
+        target: $('.output'), // This is where the rendered output div will go
+
+        initialize: function(options){
+            this.specimenType = options.specimenType;
+            console.log(this.specimenType);
+            // TODO: Add 'if' that looks for bm vs pb
+            // Create the tabbed output div with only the instructions in each content
+            // and the name of each content in each tab
+            (new app.m.CounterTable()).fetch({
+                reset: true,
+                success: function(response){
+                    // var x = _.where();
+                    console.log(response.attributes);
+                }
+            });
         }
     });
 

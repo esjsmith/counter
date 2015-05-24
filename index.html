@@ -60,6 +60,22 @@
 </div>
 
 <!--BLOCK HDB TEMPLATE SCRIPT FOR OUTPUT-->
+<script type="text/x-handlebars-template" id="tab-output-empty">
+    <!--This is what to render before there is a count done-->
+    {{#each data}}
+        <ul>
+            <li><a href='#tabs-{{tabNum}}'>{{tabName}}</a></li>
+        </ul>
+    {{/each}}
+    {{#each data}}
+        <div id="tabs-{{tabNum}}">
+            <p class="instructions">Instructions:<p>
+            <p>Click &ldquo;Start Count&rdquo; to get going.
+            <p>Once count is done, click &ldquo;Count Done&rdquo; to write results.</p>
+        </div>
+    {{/each}}
+</script>
+
 <script type="text/x-handlebars-template" id="tab-output">
     {{#each data}}
         <ul>
@@ -142,6 +158,9 @@ $(document).ready(function(){
 
     // Start the rendering of the counter
     new app.v.MakeTable;
+
+    // Next, render the tabbed output field with only instructions and tab names
+    new app.v.CreateOuputField({specimenType: 'bm'});
 
 </script>
 
