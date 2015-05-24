@@ -5,14 +5,7 @@
 (function($){
     'use strict';
 
-    app.v.MkKeyRow = Backbone.View.extend({
-        // Using this to render the row of keys at the bottom of the app table.
-        tagName: 'tr',
-        id: 'keyRow',
-        initialize: function(response){
-            return this;
-        }
-    });
+
 
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',

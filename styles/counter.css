@@ -39,7 +39,7 @@ div.wood{
     overflow: auto;
     width: 800px;
     height: 200px;
-    background-image: url(/counter/images/wood-pattern.jpg);
+    background-image: url(/counter/images/retina_wood.png);
     display: flex;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
