@@ -73,7 +73,7 @@
             // the columns, so I give it. Row name is the class of the row. Corresponds
             // to CSS.
             var x = {rowName: 'keys',
-                cellData: ['Key:'].concat((_.keys(data)), ['&mdash;'])};
+                cellData: (_.keys(data)).concat(['&mdash;'])};
 
             // Finally, append the row just made to the item that has been building
             this.$el.append(this.template(x));

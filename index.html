@@ -3,12 +3,13 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Making a Table</title>
+
     <link rel="stylesheet" type="text/css" href="styles/counter.css">
 </head>
 <body>
 <div class="container">
     <div class="wood">
-        <div class="div-counter">
+        <div class="div-counter effect8">
             <div id="counter-tbl"></div>
             <div id = 'buttons'>
                 <label for="specimenType">Specimen Type</label>
@@ -23,7 +24,7 @@
     </div>
 </div>
 
-    <!--HDB TEMPLATE SCRIPTS-->
+<!--HDB TEMPLATE SCRIPTS FOR COUNTER TABLE-->
 <script type="text/x-handlebars-template" id="table-head-tpl">
 <!--This is for the top row of the table-->
     <tr class="{{rowName}}">
@@ -57,14 +58,14 @@
 </script>
 
 <script type="text/x-handlebars-template" id="table-row-tpl">
-<!--This is for the rest of the table-->
     <tr class="{{rowName}}">
+        <td class="lbl-column">Keys:</td>
         {{#each cellData}}
         <td> {{{this}}} </td>
         {{/each}}
     </tr>
 </script>
-<!--END HDB TEMPLATE SCRIPTS-->
+<!--END HDB TEMPLATE SCRIPTS FOR COUNTER TABLE-->
 
 <script src="/libraries/jquery-2.1.4.js"></script>
 <script src="/libraries/handlebars-v3.0.3.js"></script>

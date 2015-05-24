@@ -5,6 +5,19 @@ input {
    width: 4em;
    }
 
+table#counter, label {
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    color: #486273;
+}
+
+.lbl-column {
+    text-align: right;
+}
+
 td {
    border: black solid 1px;
 }
@@ -74,16 +87,6 @@ div.output {
 table#counter{
     border-collapse: separate;
     border-spacing: 2px;
-}
-
-table#counter, label {
-	text-align: center;
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 12px;
-	text-align: center;
-	color: #486273;
 }
 
 input[type='number']::-webkit-inner-spin-button,
