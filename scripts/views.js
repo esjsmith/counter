@@ -36,7 +36,7 @@
                     that.target.html(that.el);
 
                     /*
-                    * Must make buttons before making output field, or there will
+                    * MUST make buttons before making output field, or there will
                     * be no specimen type defined
                     */
                     that.mkButtons();
@@ -145,7 +145,7 @@
         id: 'tabs',
 
         // This is where the rendered output div will go
-        el: $('.output'),
+        target: $('#output-here'),
 
         initialize: function(){
             this.specimenType = $('#specimenType').val();
@@ -155,21 +155,39 @@
             for bp. Iterate through both of the objects in the template and use the one
             that matches the options menu: either bp or bm
              */
-            _.each(this.model.attributes, function(item){
+            _.each(this.model, function(item){
                 if (item.specimenType === that.specimenType) {
-                    console.log(that.tplJson = item);
-
+                    that.tplJson = item;
                     that.mkTabs(that.tplJson);
+                    that.mkContents(that.tplJson);
                 }
             });
+            console.log(this.el);
+            this.target.html(this.el);
 
         },
         mkTabs: function(data){
-            //TODO: Makes the ul with the anchor href=#tabs-1, -2, etc
+            /* This function should have been given only one template object.
+            * The default is the `bm` template object. Iterate through each of the
+            * templates in this object.
+            */
+            var html = '<ul>';
+            for (var i = 0; i < data.templates.length; i++){
+                var x = data.templates[i];
+                html += '<li><a href="#tabs-' + (i+1) + '">' +
+                x.tplName + '</a></li>';
 
+            }
+            html += '</ul>'; console.log(html);
+            this.$el.html(html);
         },
         mkContents: function(data){
             // TODO: Publish the results of the counts here
+            var html = '';
+            for (var i = 0; i < data.templates.length; i++){
+                var x = data.templates[i];
+                html +=
+
         }
     });
 
