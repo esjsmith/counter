@@ -170,6 +170,19 @@
         template: Handlebars.compile($('#buttons-tpl').html()),
         initialize: function(){
             this.$el.html(this.template());
+            var specType = $('#specimenType').val();
+            console.log(specType);
+        },
+        events: {
+            'change #specimenType': 'changeType'
+        },
+        changeType: function(){
+            /*
+            When the specimen type select menu changes, change both the output
+            field and the table cell type labels.
+             */
+            var specType = $('#specimenType').val();
+            console.log(specType);
         }
     });
 
