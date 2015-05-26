@@ -157,7 +157,6 @@
         },
         mkTabs: function(data){
             //TODO: Makes the ul with the anchor href=#tabs-1, -2, etc
-            // TODO: use a view so that the view can be watched
         },
         mkContents: function(data){
             // TODO: Publish the results of the counts here

@@ -36,10 +36,9 @@ div.container{
 
 div.wood{
     margin: auto;
-    overflow: auto;
     width: 800px;
     background-image: url(/counter/images/retina_wood.png);
-    display: flex;
+    /*display: flex;*/
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
     border: solid #000000 2px;
@@ -77,7 +76,9 @@ div.div-counter {
     height: 23px;
     background-color: white;
 }
+#output-here{
 
+}
 div.output {
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	width: 700px;
