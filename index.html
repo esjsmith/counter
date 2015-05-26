@@ -22,15 +22,7 @@
     <div class="wood">
         <div class="div-counter effect8">
             <div id="counter-tbl"></div>
-            <div id = 'buttons'>
-                <label for="specimenType">Specimen Type</label>
-                <select id="specimenType">
-                    <option value="bm" selected="selected">Bone Marrow</option>
-                    <option value="pb">Peripheral Blood</option>
-                </select>
-                <button id='btnStartCount'>Start Count</button>
-                <button id='btnCountDone'>Count Done</button>
-            </div>
+            <div id = 'buttons'></div>
         </div>
     </div>
 </div>
@@ -132,6 +124,18 @@
 </script>
 <!--END HDB TEMPLATE SCRIPTS FOR COUNTER TABLE-->
 
+<!--BLOCK TPL FOR THE BUTTONS-->
+<script type="text/x-handlebars-template" id="buttons-tpl">
+    <label for="specimenType">Specimen Type</label>
+        <select id="specimenType">
+            <option value="bm" selected="selected">Bone Marrow</option>
+            <option value="pb">Peripheral Blood</option>
+        </select>
+    <button id='btnStartCount'>Start Count</button>
+    <button id='btnCountDone'>Count Done</button>
+</script>
+<!--END BLOCK TPL FOR THE BUTTONS-->
+
 <script src="/libraries/jquery-2.1.4.js"></script>
 <script src="/libraries/jquery-ui-1.11.4/jquery-ui.js"></script>
 <script src="/libraries/handlebars-v3.0.3.js"></script>
@@ -150,15 +154,26 @@
 <script>
 
 $(document).ready(function(){
+    /*
+    Make the value of specimen type available in th app.v name space.
+    Change it when the value changes.
+     */
+    var element;
+    element = $('#specimenType');
+    app.v.specType = element.val();
+    element.on('change', function(ev){
+        ev.preventDefault();
+        app.v.specType = element.val();
+    });
+
+    // Initiate the jQuery UI tabs method
     $(function() {
         $( "#tabs" ).tabs();
     });
 })
 
-    // Start the rendering of the counter
+    // Start the rendering of the counter, which then reders the output
     new app.v.MakeTable;
-
-
 
 </script>
 

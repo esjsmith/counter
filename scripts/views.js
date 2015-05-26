@@ -50,6 +50,9 @@
             as the model
              */
             new app.v.CreateOuputField({model: data});
+
+            // Now, instantiate app.v.Buttons to make the buttons
+            new app.v.Buttons();
         },
         mkTitleRow: function(data){
             // Gets all the values from data, which are the cell type abbr.
@@ -135,7 +138,7 @@
         id: 'tabs',
 
         // This is where the rendered output div will go
-        target: $('.output'),
+        el: $('.output'),
 
         initialize: function(){
             this.specimenType = this.model.specimenType;
@@ -145,7 +148,7 @@
             for bp. Iterate through both of the objects in the template and use the one
             that matches the options menu: either bp or bm
              */
-            _.each(response.attributes, function(item){
+            _.each(this.model.attributes, function(item){
                 if (item.specimenType === that.specimenType) {
                     that.tplJson = item;
                 }
@@ -158,6 +161,15 @@
         },
         mkContents: function(data){
             // TODO: Publish the results of the counts here
+        }
+    });
+
+    app.v.Buttons = Backbone.View.extend({
+        tagName: 'div',
+        el: $('#buttons'),
+        template: Handlebars.compile($('#buttons-tpl').html()),
+        initialize: function(){
+            this.$el.html(this.template());
         }
     });
 
