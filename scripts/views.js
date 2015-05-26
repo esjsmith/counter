@@ -34,6 +34,12 @@
                         that.mkKeyRow(item.outCodes);
                     });
                     that.target.html(that.el);
+
+                    /*
+                    * Must make buttons before making output field, or there will
+                    * be no specimen type defined
+                    */
+                    that.mkButtons();
                     /* Now, call the function that instantiates the output area view, ie,
                     app.v.CreateOutputField.
                     * */
@@ -44,15 +50,16 @@
         events: {
             // TODO: Make custom even that fires when options menu changed b/w bm and pb
         },
-        createOutputArea: function(data){
-            /*
-            Instantiate the app.v.CreateOutputField, passing in the `data` parameter
-            as the model
-             */
-            new app.v.CreateOuputField({model: data});
-
+        mkButtons: function(){
             // Now, instantiate app.v.Buttons to make the buttons
             new app.v.Buttons();
+        },
+        createOutputArea: function(data){
+            /*
+             Instantiate the app.v.CreateOutputField, passing in the `data` parameter
+             as the model
+             */
+            new app.v.CreateOuputField({model: data});
         },
         mkTitleRow: function(data){
             // Gets all the values from data, which are the cell type abbr.
@@ -141,7 +148,7 @@
         el: $('.output'),
 
         initialize: function(){
-            this.specimenType = this.model.specimenType;
+            this.specimenType = $('#specimenType').val();
             var that = this;
             // TODO: Add 'if' that looks for bm vs pb
             /* the model is supposed to only have two objects: one for bm and one
@@ -150,13 +157,16 @@
              */
             _.each(this.model.attributes, function(item){
                 if (item.specimenType === that.specimenType) {
-                    that.tplJson = item;
+                    console.log(that.tplJson = item);
+
+                    that.mkTabs(that.tplJson);
                 }
             });
 
         },
         mkTabs: function(data){
             //TODO: Makes the ul with the anchor href=#tabs-1, -2, etc
+
         },
         mkContents: function(data){
             // TODO: Publish the results of the counts here
@@ -170,7 +180,6 @@
         initialize: function(){
             this.$el.html(this.template());
             var specType = $('#specimenType').val();
-            console.log(specType);
         },
         events: {
             'change #specimenType': 'changeType'
