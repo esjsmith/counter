@@ -10,11 +10,10 @@
 <body>
 
 <div class='header-cont'>
-
     <header class='masthead'>
         <h1 id="main-title">Pathology Apps</h1>
         <nav id='masthead'>
-            Manual Differential Counter
+            &ldquo;Manual Differential Counter&rdquo;
         </nav>
     </header>
 </div>
@@ -69,7 +68,7 @@
     {{/each}}
     {{#each data}}
         <div id="tabs-{{tabNum}}">
-            <p class="instructions">Instructions:<p>
+            <p class="instructions before-render">Instructions:<p>
             <p>Click &ldquo;Start Count&rdquo; to get going.
             <p>Once count is done, click &ldquo;Count Done&rdquo; to write results.</p>
         </div>
@@ -140,7 +139,7 @@
 <script src="/libraries/underscore.js"></script>
 <script src="/libraries/backbone.js"></script>
 
-<script src="scripts/counter.js"></script>
+<!--<script src="scripts/counter.js"></script>-->
 
 <script src="scripts/defines.js"></script>
 <script src="scripts/collections.js"></script>
@@ -159,8 +158,7 @@ $(document).ready(function(){
     // Start the rendering of the counter
     new app.v.MakeTable;
 
-    // Next, render the tabbed output field with only instructions and tab names
-    new app.v.CreateOuputField({specimenType: 'bm'});
+
 
 </script>
 

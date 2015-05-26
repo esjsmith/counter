@@ -45,6 +45,10 @@ div.wood{
     border: solid #000000 2px;
 }
 
+.hidden{
+    display: none;
+}
+
 div.wood:after{
     content: "";
     display: block;

@@ -24,16 +24,32 @@
             (new app.m.CounterTable()).fetch({
                 reset: true,
                 success: function(response){
+                    /* Iterate through each of the objects. There should only be two:
+                    * on for bm and one for pb. Use this to make the four rows comprising
+                    * the counter table.*/
                     _.each(response.attributes, function(item){
                         that.mkTitleRow(item.outCodes);
                         that.mkSpinnerRow(item.outCodes);
-                        // TODO: add percentage row
                         that.mkPercentRow(item.outCodes);
                         that.mkKeyRow(item.outCodes);
                     });
                     that.target.html(that.el);
-                }
+                    /* Now, call the function that instantiates the output area view, ie,
+                    app.v.CreateOutputField.
+                    * */
+                    that.createOutputArea(response.attributes);
+                 }
             });
+        },
+        events: {
+            // TODO: Make custom even that fires when options menu changed b/w bm and pb
+        },
+        createOutputArea: function(data){
+            /*
+            Instantiate the app.v.CreateOutputField, passing in the `data` parameter
+            as the model
+             */
+            new app.v.CreateOuputField({model: data});
         },
         mkTitleRow: function(data){
             // Gets all the values from data, which are the cell type abbr.
@@ -117,21 +133,31 @@
     app.v.CreateOuputField = Backbone.View.extend({
         tagName: 'div',
         id: 'tabs',
-        target: $('.output'), // This is where the rendered output div will go
 
-        initialize: function(options){
-            this.specimenType = options.specimenType;
-            console.log(this.specimenType);
+        // This is where the rendered output div will go
+        target: $('.output'),
+
+        initialize: function(){
+            this.specimenType = this.model.specimenType;
+            var that = this;
             // TODO: Add 'if' that looks for bm vs pb
-            // Create the tabbed output div with only the instructions in each content
-            // and the name of each content in each tab
-            (new app.m.CounterTable()).fetch({
-                reset: true,
-                success: function(response){
-                    // var x = _.where();
-                    console.log(response.attributes);
+            /* the model is supposed to only have two objects: one for bm and one
+            for bp. Iterate through both of the objects in the template and use the one
+            that matches the options menu: either bp or bm
+             */
+            _.each(response.attributes, function(item){
+                if (item.specimenType === that.specimenType) {
+                    that.tplJson = item;
                 }
             });
+
+        },
+        mkTabs: function(data){
+            //TODO: Makes the ul with the anchor href=#tabs-1, -2, etc
+            // TODO: use a view so that the view can be watched
+        },
+        mkContents: function(data){
+            // TODO: Publish the results of the counts here
         }
     });
 

@@ -5,7 +5,6 @@
 (function($){
     app.m.CounterTable = Backbone.Model.extend({
         url: 'settings/templates.json'
-
     });
 
     app.m.Test = Backbone.Model.extend({
@@ -14,4 +13,7 @@
             d: 'c'
         }
     });
+
+    app.m.TabbedOutput = Backbone.Model.extend({});
+
 })(jQuery);
