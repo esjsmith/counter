@@ -10,7 +10,9 @@
             '/bm': 'showBm'
         },
         buildPage: function(){
-            console.log('at root with router');
+            var that = this;
+            this.makeTable = new app.v.MakeTable();
+            console.log('Initializing couter app.');
             (new app.m.CounterTable()).fetch({
                 reset: true,
                 success: function(response){
@@ -20,7 +22,7 @@
                     _.each(response.attributes, function(item){
                         /* Pass these in one at a time to a newly instantiated
                         * MakeTable view.*/
-                        new app.v.MakeTable({model: item});
+                        that.makeTable.render(item);
                      });
                 }
 

@@ -22,74 +22,85 @@
         templatePercent: Handlebars.compile($('#table-percent-tpl').html()),
         target:  $('#counter-tbl'), // This is the div where the rendered tpl will go
 
-        initialize: function() {
+        render: function(data) {
+            console.log(data.specimenType);
             var that = this;
-            var specType = this.model.specimenType;
+            var specType = data.specimenType;
+            this.target.html('');
 
             /* SWITCH: If specType is bm className is `table bm`. If it is pb, then className
             * is `table pb hidden.*/
             switch (specType){
                 case 'bm':
                     that.className = 'table bm';
-                    console.log(that.className);
                     break;
                 case 'pb':
                     that.className = 'table pb hidden';
-                    console.log(that.className);
                     break;
                 default :
-                    console.log('Error! `' + specType + '` is not a valid specimen type!' );
+                    console.log('Error! `' + specType + '` is not a valid specimen type!');
             }
+            console.log(that.className);
+
+            /* Start making the table and output html by calling mkTitleRow (the top
+            * row of the table). This method will call the rest of the methods in order,
+            * including createOutputArea.*/
+            that.mkTitleRow(data);
+
+            /*
+            Once all the html is made, append it to the DOM
+             */
+            this.target.append(this.el);
 
         },
         events: {
             // TODO: Make custom even that fires when options menu changed b/w bm and pb
             // TODO: listenTo keypresses
         },
-        mkButtons: function(){
-            // Now, instantiate app.v.Buttons to make the buttons
-            new app.v.Buttons();
-        },
-        createOutputArea: function(data){
-            /*
-             Instantiate the app.v.CreateOutputField, passing in the `data` parameter
-             as the model
-             */
-            new app.v.CreateOuputField({model: data});
-        },
         mkTitleRow: function(data){
-            // Gets all the values from data, which are the cell type abbr.
-            var y = ((_.values(data)));
+            /*
+            * In order to play nice with HDB, must do a funky thing with the
+            * data. See below.
+            */
 
-            // Add the cell 'tot' onto the end of the array.
-            y.push('tot');
-
-            // The HDB model looks for a cellData key to iterate through to fill in
-            // the columns, so I give it. Row name is the class of the row. Corresponds
-            // to CSS.
-            var x = {rowName: 'namecell', cellData: y};
+            var outCodes = data.outCodes;
+            var keys = Object.keys(outCodes);
+            var outArr = [];
+            _.each(keys, function(key){
+                outArr.push({key: key, cell: outCodes[key]});
+            });
+            outArr.push({key: null, cell: 'tot'});
 
             // Finally, append the row just made to the item that has been building
-            this.$el.html(this.templateHead(x));
 
+            this.$el.append(this.templateHead({rowName: 'namecell', data: outArr}));
+
+            /* Once all this is done, the spinner row is next. Should only need to pass
+            * in the value of keyboardKeys, as all the calculations will take place with
+            * those keyboard keys as the hooks for the data.
+            */
+
+            this.mkSpinnerRow((_.keys(outCodes)).concat(['tot']));
+
+            /* All is done, time to return the built up html and let the
+            initialize method render stuff.
+             */
             return this;
         },
-        mkKeyRow: function(data){
-            // Callback that makes the bottom row
-            // This is called last and appends row of keys to the end of the table
-
-            // Adds the text `Percent (%):` to a cell in front and an extra cell
-            // at the end containing an em dash
+        mkSpinnerRow: function(data){
             // The HDB model looks for a cellData key to iterate through to fill in
             // the columns, so I give it. Row name is the class of the row. Corresponds
             // to CSS.
-            var x = {rowName: 'keys',
-                cellData: (_.keys(data)).concat(['&mdash;'])};
 
             // Finally, append the row just made to the item that has been building
-            this.$el.append(this.template(x));
+            this.$el.append(this.templateSpinner({rowName: 'datacell', cellData: data}));
+
+            // Make the percent output row.
+
+            this.mkPercentRow(data);
 
             return this;
+
         },
         mkPercentRow: function(data){
             // This is the callback that makes the row where the percents will be displayed
@@ -101,38 +112,43 @@
             // rowName to be `percentrow` with a cell data of the keyboard keys. The terminating
             // cell will be labeled with an id of `tot`
 
-            var x = {rowName: 'percentrow',
-                cellData: _.keys(data).concat(['tot'])
-            };
-
             // Finally, append the row just made to the item that has been building
-            this.$el.append(this.templatePercent(x));
+            this.$el.append(this.templatePercent({rowName: 'percentrow', cellData: data}));
+
+            // And, then, make the key row
+            this.mkKeyRow(data);
 
             return this
         },
-        mkSpinnerRow: function(data){
-            // Callback that makes the row of spinners.
-            // The HDB template inserts the keyboard key into the spinner input ID
-            // in order to allow for an easy listening for the view
+        mkKeyRow: function(data){
+            // Take off the 'tot' at the end of the array and replace with em dash
+            data.pop();
+            data = data.concat(['&mdash;']);
 
-            // Gets all the keys from data, which are keyboard keys
-            var y = ((_.keys(data)));
+            // Callback that makes the bottom row
+            // This is called last and appends row of keys to the end of the table
 
-            // Add a cell with id of `tot` to the en of the row. The `Count:` label
-            // cell has to be added in the template before the iterator to make it
-            // look right.
-            y = y.concat(['tot']);
-
+            // Adds the text `Percent (%):` to a cell in front and an extra cell
+            // at the end containing an em dash
             // The HDB model looks for a cellData key to iterate through to fill in
             // the columns, so I give it. Row name is the class of the row. Corresponds
             // to CSS.
-            var x = {rowName: 'datacell', cellData: y};
 
             // Finally, append the row just made to the item that has been building
-            this.$el.append(this.templateSpinner(x));
+            this.$el.append(this.template({rowName: 'keys', cellData: data}));
 
             return this;
-
+        },
+        mkButtons: function(){
+            // Now, instantiate app.v.Buttons to make the buttons
+            new app.v.Buttons();
+        },
+        createOutputArea: function(data){
+            /*
+             Instantiate the app.v.CreateOutputField, passing in the `data` parameter
+             as the model
+             */
+            new app.v.CreateOuputField({model: data});
         }
     });
 

@@ -131,14 +131,12 @@ ul.tabs li.current{
 	padding: 40px;
 	min-height: 450px;
 	background-color: white;
-	font-family: Arial;
 	font-size: 14px;
 }
 
 .tab-content.current{
 	display: inherit;
 	min-height: 450px;
-	font-family: Arial;
 	font-size: 12pt;
 }
 
