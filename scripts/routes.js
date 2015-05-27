@@ -26,6 +26,7 @@
                 }
 
                 });
+            // Now make buttons.
         },
         showPb: function(){
             // TODO: move class `hidden` from pb counter table and output to bm

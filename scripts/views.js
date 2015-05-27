@@ -27,23 +27,28 @@
             var specType = data.specimenType;
 
             /* SWITCH: If specType is bm className is `table bm`. If it is pb, then className
-             * is `table pb hidden.*/
+             * is `table pb hidden.
+             *
+             * You will have to update your class manually after the render method. Backbone
+             * initializes the className of the element of your View only once time during the
+             * _ensureElement method.
+             * */
             switch (specType){
                 case 'bm':
+                    this.$el.attr('class', 'table bm');
                     that.className = 'table bm';
                     break;
                 case 'pb':
+                    this.$el.attr('class', 'table pb hidden');
                     that.className = 'table pb hidden';
                     break;
                 default :
                     console.log('Error! `' + specType + '` is not a valid specimen type!');
             }
-            console.log(this.className);
             this.render(data);
         },
 
         render: function(data) {
-
 
             /* Start making the table and output html by calling mkTitleRow (the top
             * row of the table). This method will call the rest of the methods in order,
@@ -55,7 +60,7 @@
             Once all the html is made, append it to the DOM
              */
             var x = this.$el.html(this.html);
-
+            console.log(x);
             this.target.append(x);
             return this;
 
