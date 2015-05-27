@@ -27,6 +27,7 @@
 
                 });
             // Now make buttons.
+            new app.v.Buttons();
         },
         showPb: function(){
             // TODO: move class `hidden` from pb counter table and output to bm

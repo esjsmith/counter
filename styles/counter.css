@@ -63,8 +63,6 @@ div.div-counter {
 	width: 700px;
 	border: 1px solid goldenrod;
 	background-color: #90C3E6;
-
-
 }
 
 .percentcell, .namecell th, .datacell {
@@ -76,10 +74,7 @@ div.div-counter {
     height: 23px;
     background-color: white;
 }
-#output-here{
-
-}
-div.output {
+div.output, #output-here {
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	width: 700px;
 	margin-left: auto;
