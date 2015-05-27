@@ -5,6 +5,13 @@
 (function($){
     'use strict';
 
+    /*
+    * The counter table and the output div will be rendered twice, once with a class
+    * of `bm` and once with a class of `pb hidden`. There will be a router attached
+    * to the `button` view that will switch between the two by moving the `hidden`
+    * class around.
+    */
+
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',
         id: 'counter',
@@ -28,6 +35,12 @@
                     * on for bm and one for pb. Use this to make the four rows comprising
                     * the counter table.*/
                     _.each(response.attributes, function(item){
+                        console.log(item.specimenType);
+                        // For the pb table, change the className to `table pb hidden`.
+                        // For the bm table, it should be `table bm`.
+                        switch (item.specimenType) {
+                            case 'bm':
+                        }
                         that.mkTitleRow(item.outCodes);
                         that.mkSpinnerRow(item.outCodes);
                         that.mkPercentRow(item.outCodes);
@@ -147,47 +160,41 @@
         // This is where the rendered output div will go
         target: $('#output-here'),
 
-        initialize: function(){
+        initialize: function () {
             this.specimenType = $('#specimenType').val();
             var that = this;
             // TODO: Add 'if' that looks for bm vs pb
             /* the model is supposed to only have two objects: one for bm and one
-            for bp. Iterate through both of the objects in the template and use the one
-            that matches the options menu: either bp or bm
+             for bp. Iterate through both of the objects in the template and use the one
+             that matches the options menu: either bp or bm
              */
-            _.each(this.model, function(item){
+            _.each(this.model, function (item) {
                 if (item.specimenType === that.specimenType) {
                     that.tplJson = item;
                     that.mkTabs(that.tplJson);
                     that.mkContents(that.tplJson);
                 }
             });
-            console.log(this.el);
             this.target.html(this.el);
 
         },
-        mkTabs: function(data){
+        mkTabs: function (data) {
             /* This function should have been given only one template object.
-            * The default is the `bm` template object. Iterate through each of the
-            * templates in this object.
-            */
+             * The default is the `bm` template object. Iterate through each of the
+             * templates in this object.
+             */
             var html = '<ul>';
-            for (var i = 0; i < data.templates.length; i++){
+            for (var i = 0; i < data.templates.length; i++) {
                 var x = data.templates[i];
-                html += '<li><a href="#tabs-' + (i+1) + '">' +
+                html += '<li><a href="#tabs-' + (i + 1) + '">' +
                 x.tplName + '</a></li>';
 
             }
-            html += '</ul>'; console.log(html);
+            html += '</ul>';
             this.$el.html(html);
         },
-        mkContents: function(data){
+        mkContents: function (data) {
             // TODO: Publish the results of the counts here
-            var html = '';
-            for (var i = 0; i < data.templates.length; i++){
-                var x = data.templates[i];
-                html +=
-
         }
     });
 
