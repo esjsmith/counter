@@ -15,11 +15,13 @@
                 reset: true,
                 success: function(response){
                     /* Iterate through each of the objects. There should only be two:
-                     * on for bm and one for pb. Use this to make the four rows comprising
-                     * the counter table.*/
+                     * on for bm and one for pb.
+                     */
                     _.each(response.attributes, function(item){
-                        console.log(item);
-                    });
+                        /* Pass these in one at a time to a newly instantiated
+                        * MakeTable view.*/
+                        new app.v.MakeTable({model: item});
+                     });
                 }
 
                 });

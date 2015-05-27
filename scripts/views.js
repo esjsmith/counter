@@ -23,45 +23,28 @@
         target:  $('#counter-tbl'), // This is the div where the rendered tpl will go
 
         initialize: function() {
-            // TODO: listenTo keypresses
-
-            // Instantiate the CounterTable model to cause it to get the
-            // JSON that will serve as the template for the counter table
             var that = this;
-            (new app.m.CounterTable()).fetch({
-                reset: true,
-                success: function(response){
-                    /* Iterate through each of the objects. There should only be two:
-                    * on for bm and one for pb. Use this to make the four rows comprising
-                    * the counter table.*/
-                    _.each(response.attributes, function(item){
-                        console.log(item.specimenType);
-                        // For the pb table, change the className to `table pb hidden`.
-                        // For the bm table, it should be `table bm`.
-                        switch (item.specimenType) {
-                            case 'bm':
-                        }
-                        that.mkTitleRow(item.outCodes);
-                        that.mkSpinnerRow(item.outCodes);
-                        that.mkPercentRow(item.outCodes);
-                        that.mkKeyRow(item.outCodes);
-                    });
-                    that.target.html(that.el);
+            var specType = this.model.specimenType;
 
-                    /*
-                    * MUST make buttons before making output field, or there will
-                    * be no specimen type defined
-                    */
-                    that.mkButtons();
-                    /* Now, call the function that instantiates the output area view, ie,
-                    app.v.CreateOutputField.
-                    * */
-                    that.createOutputArea(response.attributes);
-                 }
-            });
+            /* SWITCH: If specType is bm className is `table bm`. If it is pb, then className
+            * is `table pb hidden.*/
+            switch (specType){
+                case 'bm':
+                    that.className = 'table bm';
+                    console.log(that.className);
+                    break;
+                case 'pb':
+                    that.className = 'table pb hidden';
+                    console.log(that.className);
+                    break;
+                default :
+                    console.log('Error! `' + specType + '` is not a valid specimen type!' );
+            }
+
         },
         events: {
             // TODO: Make custom even that fires when options menu changed b/w bm and pb
+            // TODO: listenTo keypresses
         },
         mkButtons: function(){
             // Now, instantiate app.v.Buttons to make the buttons
