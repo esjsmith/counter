@@ -15,21 +15,19 @@
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',
         id: 'counter',
-        className: 'table',
         template: Handlebars.compile($('#table-row-tpl').html()),
         templateHead: Handlebars.compile($('#table-head-tpl').html()),
         templateSpinner: Handlebars.compile($('#table-spinner-tpl').html()),
         templatePercent: Handlebars.compile($('#table-percent-tpl').html()),
         target:  $('#counter-tbl'), // This is the div where the rendered tpl will go
+        html: '',
 
-        render: function(data) {
-            console.log(data.specimenType);
+        initialize: function(data){
             var that = this;
             var specType = data.specimenType;
-            this.target.html('');
 
             /* SWITCH: If specType is bm className is `table bm`. If it is pb, then className
-            * is `table pb hidden.*/
+             * is `table pb hidden.*/
             switch (specType){
                 case 'bm':
                     that.className = 'table bm';
@@ -40,17 +38,26 @@
                 default :
                     console.log('Error! `' + specType + '` is not a valid specimen type!');
             }
-            console.log(that.className);
+            console.log(this.className);
+            this.render(data);
+        },
+
+        render: function(data) {
+
 
             /* Start making the table and output html by calling mkTitleRow (the top
             * row of the table). This method will call the rest of the methods in order,
             * including createOutputArea.*/
-            that.mkTitleRow(data);
+            this.mkTitleRow(data);
+
 
             /*
             Once all the html is made, append it to the DOM
              */
-            this.target.append(this.el);
+            var x = this.$el.html(this.html);
+
+            this.target.append(x);
+            return this;
 
         },
         events: {
@@ -73,7 +80,7 @@
 
             // Finally, append the row just made to the item that has been building
 
-            this.$el.append(this.templateHead({rowName: 'namecell', data: outArr}));
+            this.html += (this.templateHead({rowName: 'namecell', data: outArr}));
 
             /* Once all this is done, the spinner row is next. Should only need to pass
             * in the value of keyboardKeys, as all the calculations will take place with
@@ -93,7 +100,7 @@
             // to CSS.
 
             // Finally, append the row just made to the item that has been building
-            this.$el.append(this.templateSpinner({rowName: 'datacell', cellData: data}));
+            this.html += (this.templateSpinner({rowName: 'datacell', cellData: data}));
 
             // Make the percent output row.
 
@@ -113,7 +120,7 @@
             // cell will be labeled with an id of `tot`
 
             // Finally, append the row just made to the item that has been building
-            this.$el.append(this.templatePercent({rowName: 'percentrow', cellData: data}));
+            this.html += (this.templatePercent({rowName: 'percentrow', cellData: data}));
 
             // And, then, make the key row
             this.mkKeyRow(data);
@@ -135,7 +142,7 @@
             // to CSS.
 
             // Finally, append the row just made to the item that has been building
-            this.$el.append(this.template({rowName: 'keys', cellData: data}));
+            this.html += (this.template({rowName: 'keys', cellData: data}));
 
             return this;
         },

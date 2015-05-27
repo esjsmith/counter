@@ -11,7 +11,6 @@
         },
         buildPage: function(){
             var that = this;
-            this.makeTable = new app.v.MakeTable();
             console.log('Initializing couter app.');
             (new app.m.CounterTable()).fetch({
                 reset: true,
@@ -22,7 +21,7 @@
                     _.each(response.attributes, function(item){
                         /* Pass these in one at a time to a newly instantiated
                         * MakeTable view.*/
-                        that.makeTable.render(item);
+                        (new app.v.MakeTable(item));
                      });
                 }
 
