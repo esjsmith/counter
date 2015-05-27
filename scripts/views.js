@@ -149,14 +149,6 @@
             this.html += (this.template({rowName: 'keys', cellData: data}));
 
             return this;
-        },
-
-        createOutputArea: function(data){
-            /*
-             Instantiate the app.v.CreateOutputField, passing in the `data` parameter
-             as the model
-             */
-            new app.v.CreateOuputField({model: data});
         }
     });
 
@@ -209,6 +201,13 @@
 
         render: function(data){
             this.mkTabs(data);
+            /*
+             Once all the html is made, append it to the DOM
+             */
+            var x = this.$el.html(this.html);
+            this.target.append(x);
+            return this;
+
         },
         mkTabs: function (data) {
             this.html += this.tabTpl({template: data.templates});
@@ -218,9 +217,9 @@
 
         },
         mkContents: function (data) {
-            // TODO: Publish the results of the counts here
             this.html += this.outTpl({template: data.templates});
-            console.log(this.html);
+
+            return this;
         }
     });
 

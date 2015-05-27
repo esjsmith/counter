@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/libraries/jquery-ui-1.11.4/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="styles/landing-style.css">
     <link rel="stylesheet" type="text/css" href="styles/counter.css">
+
 </head>
 <body>
 
@@ -136,6 +137,7 @@
 
 <!--<script src="scripts/counter.js"></script>-->
 
+
 <script src="scripts/defines.js"></script>
 <script src="scripts/collections.js"></script>
 <script src="scripts/models.js"></script>
@@ -144,25 +146,23 @@
 <script src="scripts/app.js"></script>
 <script>
 
-$(document).ready(function(){
-    /*
-    Make the value of specimen type available in th app.v name space.
-    Change it when the value changes.
-     */
-    var element;
-    element = $('#specimenType');
-    app.v.specType = element.val();
-    element.on('change', function(ev){
-        ev.preventDefault();
+    $(document).ready(function(){
+        /*
+        Make the value of specimen type available in th app.v name space.
+        Change it when the value changes.
+         */
+        var element;
+        element = $('#specimenType');
         app.v.specType = element.val();
-    });
+        element.on('change', function(ev){
+            ev.preventDefault();
+            app.v.specType = element.val();
+        });
 
-    // Initiate the jQuery UI tabs method
-    $(function() {
-        $( "#tabs" ).tabs();
-    });
-})
-
+        // Initiate the jQuery UI tabs method
+        resetCounter();
+        tabbedOutput();
+    })
 
 </script>
 

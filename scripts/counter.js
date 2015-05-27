@@ -3,40 +3,6 @@
 // Things that need to be defined first
 // Getting the app ready to load the template JSON
 
-var xhr = new XMLHttpRequest();
-var jsonObj = {};
-
-//this function is to change between bm and pb
-
-xhrOut = function (var1) {
-	this.outPut = var1;
-};
-
-xhr.onload = function() {
-	var tempVar = ''; responseObject = {};
-        textOut = '';
-    if(xhr.status === 200) {
-        textOut = xhr.responseText;
-        responseObject = JSON.parse(xhr.responseText);
-        ysmJsonObj = new xhrOut(responseObject.ysmTemplate);
-        pdxJsonObj = new xhrOut(responseObject.pdxTemplate);
-        jsonObj = new xhrOut(responseObject);
-
-        // In order to properly name the heading of each column, I'll gather
-        // the names of the columns from the cellCode part of the
-        // templates.JSON file by pulling them out of responseObject (where
-        // the JSON template object lives.
-        outCodes = responseObject.ysmTemplate.outCodes;
-
-        // Iterate through all the cell codes and rename the text in the
-        // column header. The php script above should name them according to the
-        // key strokes correlating to that cell.
-        for (var cellCode in outCodes) {
-            var tempVar = 'td#cell' + cellCode;
-            $(tempVar).text(outCodes[cellCode]);
-        }
-    }
-};
 
 function resetCounter () {
 	// This will allow the counters to all be set to 0
@@ -161,9 +127,7 @@ function updateBmPb(e){
 
 
 $(document).ready(function() {
-    resetCounter();
-    xhr.open('POST', 'settings/templates.json', true); // Open up the template file
-    xhr.send(null);                          // Send the request
+
 
     	$('ul.tabs li').click(function(){
 		var tab_id = $(this).attr('data-tab');
