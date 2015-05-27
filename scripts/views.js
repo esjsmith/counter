@@ -168,6 +168,14 @@
         tabTpl: Handlebars.compile(
             "<ul>{{#each template}}<li><a href='#tabs-{{@index}}'>{{tplName}}</a></li>{{/each}}</ul>"
         ),
+        instructHtml: "<p class='instructions'>Instructions:<p>" +
+        "<p>Click &ldquo;Start Count&rdquo; to get going.</p>" +
+        "<p>Once count is done, click &ldquo;Count Done&rdquo; to write results.</p>",
+        outTpl: Handlebars.compile(
+            "{{#each template}}" +
+            "<div id='tab-{{@index}}><p>{{{outSentence}}}</p></div>" +
+            "{{/each}}"
+        ),
 
         // This is where the rendered output div will go
         target: $('#output-here'),
@@ -204,14 +212,15 @@
         },
         mkTabs: function (data) {
             this.html += this.tabTpl({template: data.templates});
-            console.log(this.html);
-            // Call mkContents
 
+            // Call mkContents
             this.mkContents(data);
 
         },
         mkContents: function (data) {
             // TODO: Publish the results of the counts here
+            this.html += this.outTpl({template: data.templates});
+            console.log(this.html);
         }
     });
 

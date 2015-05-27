@@ -21,7 +21,7 @@
             {
                 "tplCode": "pdx",
                 "tplName": "Precipio DX",
-                "outSentence": "Number of cells counted: {{total}}<br><br>Cell Type|Percent|Ref. Range|<br>Blasts | {{blast}} %| 0.3 - 3.0 %|<br>Immature Myeloid | {{pro}} %| 12.0 - 21.0 %|<br>Mature Myeloid | {{gran}} %| 35.0 - 55.0 %|<br>Eosinophils | {{eos}} %| 1.0 - 3.0 %|<br>Basophils | {{baso}} %| 0.0 - 1.0 %|<br>Lymphocytes | {{lymph}} %| 10.0 - 15.0 %|<br>Plasma Cells | <{{plasma}} %| 0.0 - 1.0 %|<br>Monocytes | {{mono}} %| 0.0 - 1.0 %|<br>Erythroid | {{eryth}} %| 15.0 - 25.0 %|<br>M:E ratio| _ |2 - 4:1|"
+                "outSentence": "Number of cells counted: {{total}}<br><br>Cell Type|Percent|Ref. Range|<br>Blasts | {{blast}} %| 0.3 - 3.0 %|<br>Immature Myeloid | {{pro}} %| 12.0 - 21.0 %|<br>Mature Myeloid | {{gran}} %| 35.0 - 55.0 %|<br>Eosinophils | {{eos}} %| 1.0 - 3.0 %|<br>Basophils | {{baso}} %| 0.0 - 1.0 %|<br>Lymphocytes | {{lymph}} %| 10.0 - 15.0 %|<br>Plasma Cells | {{plasma}} %| 0.0 - 1.0 %|<br>Monocytes | {{mono}} %| 0.0 - 1.0 %|<br>Erythroid | {{eryth}} %| 15.0 - 25.0 %|<br>M:E ratio| _ |2 - 4:1|"
             },
             {
                 "tplCode": "mgh",
