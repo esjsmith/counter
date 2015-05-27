@@ -10,7 +10,6 @@
             '/bm': 'showBm'
         },
         buildPage: function(){
-            var that = this;
             console.log('Initializing couter app.');
             (new app.m.CounterTable()).fetch({
                 reset: true,
@@ -28,6 +27,9 @@
                 });
             // Now make buttons.
             new app.v.Buttons();
+
+            // Start the initial output table
+            new app.v.CreateOuputField();
         },
         showPb: function(){
             // TODO: move class `hidden` from pb counter table and output to bm

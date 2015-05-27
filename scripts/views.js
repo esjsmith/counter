@@ -151,10 +151,7 @@
 
             return this;
         },
-        mkButtons: function(){
-            // Now, instantiate app.v.Buttons to make the buttons
-            new app.v.Buttons();
-        },
+
         createOutputArea: function(data){
             /*
              Instantiate the app.v.CreateOutputField, passing in the `data` parameter
