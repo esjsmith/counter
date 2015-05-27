@@ -21,6 +21,9 @@
                         /* Pass these in one at a time to a newly instantiated
                         * MakeTable view.*/
                         (new app.v.MakeTable(item));
+
+                        // Start the initial output table
+                        new app.v.CreateOuputField(item);
                      });
                 }
 
@@ -28,8 +31,7 @@
             // Now make buttons.
             new app.v.Buttons();
 
-            // Start the initial output table
-            new app.v.CreateOuputField();
+
         },
         showPb: function(){
             // TODO: move class `hidden` from pb counter table and output to bm

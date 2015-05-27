@@ -60,7 +60,6 @@
             Once all the html is made, append it to the DOM
              */
             var x = this.$el.html(this.html);
-            console.log(x);
             this.target.append(x);
             return this;
 
@@ -164,13 +163,36 @@
     app.v.CreateOuputField = Backbone.View.extend({
         tagName: 'div',
         id: 'tabs',
+        className: 'output',
 
         // This is where the rendered output div will go
         target: $('#output-here'),
 
-        initialize: function () {
-            this.specimenType = $('#specimenType').val();
+        initialize: function (data) {
             var that = this;
+            var specType = data.specimenType;
+            console.log(specType);
+            /* SWITCH: If specType is bm className is `table bm`. If it is pb, then className
+             * is `table pb hidden.
+             *
+             * You will have to update your class manually after the render method. Backbone
+             * initializes the className of the element of your View only once time during the
+             * _ensureElement method.
+             * */
+            switch (specType){
+                case 'bm':
+                    this.$el.attr('class', 'table bm');
+                    that.className = 'table bm';
+                    break;
+                case 'pb':
+                    this.$el.attr('class', 'table pb hidden');
+                    that.className = 'table pb hidden';
+                    break;
+                default :
+                    console.log('Error! `' + specType + '` is not a valid specimen type!');
+            }
+            this.render(data);
+
             // TODO: Add 'if' that looks for bm vs pb
             /* the model is supposed to only have two objects: one for bm and one
              for bp. Iterate through both of the objects in the template and use the one
