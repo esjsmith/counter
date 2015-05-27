@@ -164,6 +164,10 @@
         tagName: 'div',
         id: 'tabs',
         className: 'output',
+        html: '',
+        tabTpl: Handlebars.compile(
+            "<ul>{{#each template}}<li><a href='#tabs-{{@index}}'>{{tplName}}</a></li>{{/each}}</ul>"
+        ),
 
         // This is where the rendered output div will go
         target: $('#output-here'),
@@ -171,7 +175,7 @@
         initialize: function (data) {
             var that = this;
             var specType = data.specimenType;
-            console.log(specType);
+
             /* SWITCH: If specType is bm className is `table bm`. If it is pb, then className
              * is `table pb hidden.
              *
@@ -181,47 +185,30 @@
              * */
             switch (specType){
                 case 'bm':
-                    this.$el.attr('class', 'table bm');
+                    this.$el.attr('class', 'output bm');
                     that.className = 'table bm';
                     break;
                 case 'pb':
-                    this.$el.attr('class', 'table pb hidden');
+                    this.$el.attr('class', 'output pb hidden');
                     that.className = 'table pb hidden';
                     break;
                 default :
                     console.log('Error! `' + specType + '` is not a valid specimen type!');
             }
+
             this.render(data);
+        },
 
-            // TODO: Add 'if' that looks for bm vs pb
-            /* the model is supposed to only have two objects: one for bm and one
-             for bp. Iterate through both of the objects in the template and use the one
-             that matches the options menu: either bp or bm
-             */
-            _.each(this.model, function (item) {
-                if (item.specimenType === that.specimenType) {
-                    that.tplJson = item;
-                    that.mkTabs(that.tplJson);
-                    that.mkContents(that.tplJson);
-                }
-            });
-            this.target.html(this.el);
-
+        render: function(data){
+            this.mkTabs(data);
         },
         mkTabs: function (data) {
-            /* This function should have been given only one template object.
-             * The default is the `bm` template object. Iterate through each of the
-             * templates in this object.
-             */
-            var html = '<ul>';
-            for (var i = 0; i < data.templates.length; i++) {
-                var x = data.templates[i];
-                html += '<li><a href="#tabs-' + (i + 1) + '">' +
-                x.tplName + '</a></li>';
+            this.html += this.tabTpl({template: data.templates});
+            console.log(this.html);
+            // Call mkContents
 
-            }
-            html += '</ul>';
-            this.$el.html(html);
+            this.mkContents(data);
+
         },
         mkContents: function (data) {
             // TODO: Publish the results of the counts here
