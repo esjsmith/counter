@@ -160,7 +160,9 @@
         tabTpl: Handlebars.compile(
             "<ul class='tabs'>" +
             "{{#each template}}" +
-            "<li class='tab-link {{current}}' data-tab='tab-{{@index}}'>{{tplName}}</li>" +
+            "<li class='tab-link {{current}}' data-tab='tab-{{@index}}'>" +
+            "<img src='images/{{tplCode}}-favicon.png'> | " +
+            "{{tplName}}</li>" +
             "{{/each}}" +
             "</ul>"
         ),
