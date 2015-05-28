@@ -22,9 +22,9 @@
         resetCounter: function(){
             // This will allow the counters to all be set to 0
             // to start the script
-            console.log('resetting counter');
+            console.log('Resetting counter');
             $('.cellAmount').val(0);
-            $('.cellPercent').text(0);
+            $('.percentCell').text(0);
             $('#percentcelltot').text('100%');
         },
 

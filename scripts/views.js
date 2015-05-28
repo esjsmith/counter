@@ -61,6 +61,7 @@
              */
             var x = this.$el.html(this.html);
             this.target.append(x);
+            app.tools.resetCounter();
             return this;
 
         },
