@@ -210,6 +210,11 @@
             this.mkTabs(data);
             this.target.append(this.$el.html(this.html));
             console.log('done rendering');
+
+            // Now, start up the tabbedOutput method to make the output area work.
+            app.tools.tabbedOutput();
+            app.tools.writeInstructions(this.instructHtml);
+
             return this;
 
         },
@@ -231,6 +236,7 @@
 
         },
         mkContents: function (data) {
+            console.log(data.templates[0]);
             this.html += this.outTpl({template: data.templates});
 
             return this;

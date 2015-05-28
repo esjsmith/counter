@@ -9,6 +9,7 @@
 (function($){
     app.tools = {
         tabbedOutput: function(){
+            console.log('tabbedOutput');
             $('ul.tabs li').click(function() {
                 var tab_id = $(this).attr('data-tab');
 
@@ -26,6 +27,10 @@
             $('.cellAmount').val(0);
             $('.cellPercent').text(0);
             $('#percentcelltot').text('100%');
+        },
+
+        writeInstructions: function(instructions){
+            $('div.instruct-div').html(instructions);
         }
     };
 })(jQuery);
