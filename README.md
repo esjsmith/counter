@@ -4,11 +4,7 @@
 This is a manual differential counter for use in hematopathology practices.
 
 ## Installation
-1. **IMPORTANT**: This is a Backbone JS single page app. As a result, the root of the
-app must be set to reflect the location of the app in the web server. This can be changed
-in the `setRoot` variable in the `/scripts/routes.js` file. The default setting assumes
-that the app is located in the `/counter/index.html` file, with the root of the webserver
-one level up from the `counter` app folder on the server's file system.
+
 
 ## Instructions
 The app is relatively simple to use.

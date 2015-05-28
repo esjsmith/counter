@@ -30,6 +30,20 @@
 
         writeInstructions: function(instructions){
             $('div.instruct-div').html(instructions);
+        },
+        toggleSpecType: function(toType) {
+            console.log('Switching to ' + toType);
+            switch (toType) {
+                case 'bm':
+                    var hideType = 'pb';
+                    break;
+                case 'pb':
+                    var hideType = 'bm';
+                    break;
+            }
+            console.log('Hiding ' + hideType);
+            $('.' + toType).removeClass('hidden');
+            $('.' + hideType).addClass('hidden');
         }
     };
 })(jQuery);

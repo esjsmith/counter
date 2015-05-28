@@ -260,9 +260,8 @@
             field and the table cell type labels.
              */
             var specType = $('#specimenType').val();
-            console.log(specType);
-            Backbone.history
-            app.r.mainRouter.navigate('spectype/' + specType);
+            app.tools.toggleSpecType(specType);
+
         }
     });
 

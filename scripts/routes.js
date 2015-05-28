@@ -3,10 +3,11 @@
  */
 
 (function($){
+    app.setAsRoot = '/';
+
     app.r.mainRouter = new (Backbone.Router.extend({
         routes: {
-            'counter(/)': 'buildPage',
-            'spectype/:specType(/)': 'changeSpecimenType'
+            '': 'buildPage'
         },
         initialize: function(){
             this.route('counter(/)', 'buildPage');
@@ -32,11 +33,8 @@
                 });
             // Now make buttons.
             new app.v.Buttons();
-        },
-        changeSpecimenType: function(specType){
-            console.log(specType);
         }
     }));
 
-    Backbone.history.start({root: '/', pushState: true});
+    Backbone.history.start();
 })(jQuery);
