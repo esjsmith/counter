@@ -3,6 +3,13 @@
 ## Description
 This is a manual differential counter for use in hematopathology practices.
 
+## Installation
+1. **IMPORTANT**: This is a Backbone JS single page app. As a result, the root of the
+app must be set to reflect the location of the app in the web server. This can be changed
+in the `setRoot` variable in the `/scripts/routes.js` file. The default setting assumes
+that the app is located in the `/counter/index.html` file, with the root of the webserver
+one level up from the `counter` app folder on the server's file system.
+
 ## Instructions
 The app is relatively simple to use.
 
@@ -19,21 +26,22 @@ The app is relatively simple to use.
 ## Customization
 Customization can be done via the `comboTpl.json` file in the `settings` folder. 
 The parts of this JSON file are:
+
 1. `tplCode`: An easy to type code that will be used to refer to the template in
-the app code.
+    the app code.
 2. `tplName`: A descriptive (but not too long) name for the template that is rendered
-into the tabbed output view.
+    into the tabbed output view.
 3. `specType`: For now, this only takes either `bm` ("bone marrow") or `pb` ("peripheral blood").
-Using anything else will cause the template not to be rendered.
+    Using anything else will cause the template not to be rendered.
 4. `outSentence`: Output sentence using a Handlebars-type format. The tags in the
-double-stashes (`{{example}}`) should match exactly the codes in the next section of the 
-tplJSON.
+    double-stashes (`{{example}}`) should match exactly the codes in the next section of the 
+    tplJSON.
 5. `outCodes`: This contains JSON objects. In each `{"key": "value"}`, the key represents
-the one letter keyboard key. The "value" represents the abbreviation biological cell type.
- This abbreviation must match the cell code abbreviation that was written into the Handlebars
- template in number 2 (`outSentence`). Sorry to use the word key to represent both the keyboard
- key and the object key. If you can think of a clearer way to word this, then please
- let me know.
+    the one letter keyboard key. The "value" represents the abbreviation biological cell type.
+    This abbreviation must match the cell code abbreviation that was written into the Handlebars
+    template in number 2 (`outSentence`). Sorry to use the word key to represent both the keyboard
+    key and the object key. If you can think of a clearer way to word this, then please
+    let me know.
 
 ## Dependencies
 * jQuery version 1.11.2
