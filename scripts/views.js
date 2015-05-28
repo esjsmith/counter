@@ -211,7 +211,6 @@
         render: function(data){
             this.mkTabs(data);
             this.target.append(this.$el.html(this.html));
-            console.log('done rendering');
 
             // Now, start up the tabbedOutput method to make the output area work.
             app.tools.tabbedOutput();
@@ -238,7 +237,6 @@
 
         },
         mkContents: function (data) {
-            console.log(data.templates[0]);
             this.html += this.outTpl({template: data.templates});
 
             return this;
@@ -263,6 +261,8 @@
              */
             var specType = $('#specimenType').val();
             console.log(specType);
+            Backbone.history
+            app.r.mainRouter.navigate('spectype/' + specType);
         }
     });
 

@@ -3,14 +3,16 @@
  */
 
 (function($){
-    app.r.initPage = new (Backbone.Router.extend({
+    app.r.mainRouter = new (Backbone.Router.extend({
         routes: {
-            '': 'buildPage',
-            '/pb': 'showPb',
-            '/bm': 'showBm'
+            'counter(/)': 'buildPage',
+            'spectype/:specType(/)': 'changeSpecimenType'
+        },
+        initialize: function(){
+            this.route('counter(/)', 'buildPage');
         },
         buildPage: function(){
-            console.log('Initializing couter app.');
+            console.log('Initializing counter app.');
             (new app.m.CounterTable()).fetch({
                 reset: true,
                 success: function(response){
@@ -31,13 +33,10 @@
             // Now make buttons.
             new app.v.Buttons();
         },
-        showPb: function(){
-            // TODO: move class `hidden` from pb counter table and output to bm
-        },
-        showBm: function(){
-            // TODO: move class `hidden` from bm counter table and output to pb
+        changeSpecimenType: function(specType){
+            console.log(specType);
         }
     }));
 
-    Backbone.history.start();
+    Backbone.history.start({root: '/', pushState: true});
 })(jQuery);
