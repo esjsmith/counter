@@ -16,6 +16,7 @@ function resetCounter () {
 }
 
 function tabbedOutput(){
+console.log('here');
     $('ul.tabs li').click(function() {
         var tab_id = $(this).attr('data-tab');
 

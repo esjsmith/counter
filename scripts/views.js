@@ -158,14 +158,21 @@
         className: 'output',
         html: '',
         tabTpl: Handlebars.compile(
-            "<ul>{{#each template}}<li><a href='#tabs-{{@index}}'>{{tplName}}</a></li>{{/each}}</ul>"
+            "<ul class='tabs'>" +
+            "{{#each template}}" +
+            "<li class='tab-link {{current}}' data-tab='tab-{{@index}}'>{{tplName}}</li>" +
+            "{{/each}}" +
+            "</ul>"
         ),
         instructHtml: "<p class='instructions'>Instructions:<p>" +
         "<p>Click &ldquo;Start Count&rdquo; to get going.</p>" +
         "<p>Once count is done, click &ldquo;Count Done&rdquo; to write results.</p>",
         outTpl: Handlebars.compile(
             "{{#each template}}" +
-            "<div id='tab-{{@index}}><p>{{{outSentence}}}</p></div>" +
+            "<div class='tab-content {{current}}' id='tab-{{@index}}'>" +
+             "<div class='instruct-div'>x</div>" +
+             "<div class='out-target hidden'>{{{outSentence}}}</div>" +
+            "</div>" +
             "{{/each}}"
         ),
 
@@ -201,15 +208,22 @@
 
         render: function(data){
             this.mkTabs(data);
-            /*
-             Once all the html is made, append it to the DOM
-             */
-            var x = this.$el.html(this.html);
-            this.target.append(x);
+            this.target.append(this.$el.html(this.html));
+            console.log('done rendering');
             return this;
 
         },
         mkTabs: function (data) {
+            /*
+            * In order to render correctly, ie to make the first tab "current,"
+            * there must be a `current` class. In order to do this, the script will add
+            * a key: value pair of `current: 'current'` to the first entry in the
+            * data.templates array of objects. The HDB template has a {{current}} tag
+            * in the approriate place that will render the word current if it is present
+            * and nothing if the word is absent.
+            */
+            data.templates[0]['current'] = 'current';
+
             this.html += this.tabTpl({template: data.templates});
 
             // Call mkContents
