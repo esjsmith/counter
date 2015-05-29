@@ -8,6 +8,7 @@
 // OTHER FUNCTIONS
 (function($){
     app.CONSTANTS = {
+        // TODO: find a library that translates key code to capital letter string
         ESC_KEY: $.ui.keyCode.ESCAPE,
         83: 'S',
         65: 'A',
@@ -79,17 +80,58 @@
 
 
                 $(document).keydown(function(ev){
-                    // First, make sure escape key doesn't do anything untoward
                     var x = app.CONSTANTS[ev.which];
-                    console.log(x + ' ' + _.isString(x));
 
-                    // Fire up the KeyPress library
-                    var listener = new window.keypress.Listener();
-                    listener.simple_combo(x, function(){
-                        console.log('pressed ');
-                    });
+                    // Pass in the string corresponding to the key code to the
+                    // adding function. Make sure the key is defined first, though.
+                    if (x){
+                        app.utils.addToCell(x);
+                    }
+
+
                 });
             })
+        },
+        addToCell: function(whichCell){
+            // This function takes the data from the listener
+            // below and adds one to each cell when that button
+            // is pressed
+
+            /*
+            * Because there are two specimen types by default (bm and pb),
+            * the specTypes variable will contain both. I can then iterate
+            * over each of them and run through this method twice.
+            * */
+
+            // TODO: create the specTypes array from the model that loads from templates.json
+            var specTypes = ['bm', 'pb'];
+            _.each(specTypes, function(item){
+                var whichTable = 'table.' + item;
+                (function (whichTable, whichCell){
+                    var curAmount, newAmount, curTot, newTot, totCell, wchCellStr, findCell;
+                    wchCellStr = "#numcell" + whichCell.toUpperCase();
+                    findCell = $(whichTable).find(wchCellStr);
+                    curAmount = findCell.val();
+
+                    // Increase the chosen cell by one
+                    newAmount = (curAmount * 1 + 1);
+                    findCell.val("");
+                    findCell.val(newAmount);
+
+                    // Increase the total cell by one
+                    totCell = $(whichTable).find('#numcelltot');
+                    curTot = totCell.val();
+                    newTot = curTot * 1 + 1;
+                    totCell.val(newTot);
+                    //app.utils.calcPercent();
+
+                })(whichTable, whichCell);
+            });
+
+
+        },
+        calcPercent: function(){
+            console.log('calcPercent');
         }
     };
 })(jQuery);
