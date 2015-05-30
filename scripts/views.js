@@ -54,14 +54,12 @@
             * row of the table). This method will call the rest of the methods in order,
             * including createOutputArea.*/
             this.mkTitleRow(data);
-
-
             /*
             Once all the html is made, append it to the DOM
              */
             var x = this.$el.html(this.html);
             this.target.append(x);
-            app.tools.resetCounter();
+            app.tools.resetCounter(data.specimenType);
             return this;
 
         },

@@ -19,7 +19,6 @@
         67: 'C',
         86: 'V',
         66: 'B'
-
     };
 
     app.tools = {
@@ -34,12 +33,14 @@
                 $("#" + tab_id).addClass('current');
             })
         },
-        resetCounter: function(){
+        resetCounter: function(specType){
             // This will allow the counters to all be set to 0
             // to start the script
-            $('.cellAmount').val(0);
-            $('.percentCell').text(0);
-            $('#percentcelltot').text('100%');
+            var x = 'table.' + specType;
+            console.log(x);
+            $(x).find('.cellAmount').val(0);
+            $(x).find('.percentCell').text(0);
+            $(x).find('#percentcelltot').text('100%');
         },
 
         writeInstructions: function(instructions){
@@ -58,6 +59,10 @@
             console.log('Hiding ' + hideType);
             $('.' + toType).removeClass('hidden');
             $('.' + hideType).addClass('hidden');
+        },
+        eachSpecType: function(){
+            // Goes through each specimen type
+            var specTypes = ['bm', 'pb'];
         }
     };
 
@@ -68,7 +73,7 @@
 
                 /*
                 * Whenever the user clicks "Start Count," disable the button.
-                * This prevents each cunt being rgistered as may times as the start
+                * This prevents each cunt being registered as may times as the start
                 * button is pressed. If you would like to play a practical joke on
                 * the poor user, then trigger the start button multiple times.
                 */
@@ -127,11 +132,6 @@
 
                 })(whichTable, whichCell);
             });
-
-
-        },
-        calcPercent: function(){
-            console.log('calcPercent');
         }
     };
 })(jQuery);
