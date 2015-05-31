@@ -28,7 +28,6 @@ function calcPercent(e) {
 						$('#numcelltot').val() * 100;
 		$(varStrPercent).text(finalCellPercent.toFixed(2) + "%");
 	};
-
 };
 
 function addToCell(whichCell) {

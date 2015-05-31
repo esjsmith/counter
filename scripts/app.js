@@ -18,7 +18,8 @@
         88: 'X',
         67: 'C',
         86: 'V',
-        66: 'B'
+        66: 'B',
+        89: 'Y'
     };
 
     app.tools = {
@@ -37,7 +38,6 @@
             // This will allow the counters to all be set to 0
             // to start the script
             var x = 'table.' + specType;
-            console.log(x);
             $(x).find('.cellAmount').val(0);
             $(x).find('.percentCell').text(0);
             $(x).find('#percentcelltot').text('100%');
@@ -59,10 +59,6 @@
             console.log('Hiding ' + hideType);
             $('.' + toType).removeClass('hidden');
             $('.' + hideType).addClass('hidden');
-        },
-        eachSpecType: function(){
-            // Goes through each specimen type
-            var specTypes = ['bm', 'pb'];
         }
     };
 
@@ -81,19 +77,25 @@
 
                 /* Listen to keyboard keypresses. Binding to document level so that
                  I don't have to worry about setting focus to anything.
-                  */
-
+                */
 
                 $(document).keydown(function(ev){
-                    var x = app.CONSTANTS[ev.which];
+                    /*
+                    * This should be temporary. Right now, the app listens for keypresses
+                    * and returns a key code, which is translated by jQuery into a constant
+                    * key code across browsers. For now, I'm using the app.CONSTANTS object
+                    * to return the letter corresponding to the key. I need to figure out
+                    * a way to do this for all letters pressed.
+                    * */
+                    var whichLetter = String.fromCharCode(ev.which);
 
                     // Pass in the string corresponding to the key code to the
                     // adding function. Make sure the key is defined first, though.
-                    if (x){
-                        app.utils.addToCell(x);
+                    if (whichLetter){
+                        app.utils.addToCell(whichLetter);
+                    } else {
+                        console.log(ev.which + ' is not in custom library.')
                     }
-
-
                 });
             })
         },
@@ -128,10 +130,22 @@
                     curTot = totCell.val();
                     newTot = curTot * 1 + 1;
                     totCell.val(newTot);
-                    //app.utils.calcPercent();
+                    app.utils.calcPercent(whichTable, whichCell);
 
                 })(whichTable, whichCell);
             });
+        },
+        calcPercent: function(whichTable, whichLetter){
+            console.log($('#percentcell' + whichLetter));
+
+            /*
+            * The following goes through each percentCell in the table designated
+            * by the whichTable variable.
+            */
+            var x = $(whichTable).find('.percentrow').find('td.percentCell');
+            _.each(x, function(item){
+            })
+
         }
     };
 })(jQuery);
