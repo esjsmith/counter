@@ -272,15 +272,21 @@
              */
 
             $(document).keydown(function(ev){
-                // Pass in the string corresponding to the key code to the
-                // adding function.
-
-                app.utils.addToCell(String.fromCharCode(ev.which));
+                /* Pass in the string corresponding to the key code to the
+                 adding function through a try-catch block to avoid throwing an error
+                 every time a non-character key is pressed.
+                 */
+                try {
+                    app.utils.addToCell(String.fromCharCode(ev.which));
+                } catch(err) {
+                    // do nothing
+                }
             });
         },
         countDone: function(e){
             e.preventDefault();
             console.log(app.TPLJSON);
+            // TODO: extract templates
             // TODO: Render templates
             // TODO: Add class `hidden` to instructions
             // TODO: Remove class `hidden` from template
