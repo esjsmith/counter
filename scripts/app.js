@@ -9,17 +9,7 @@
 (function($){
     app.CONSTANTS = {
         // TODO: find a library that translates key code to capital letter string
-        ESC_KEY: $.ui.keyCode.ESCAPE,
-        83: 'S',
-        65: 'A',
-        68: 'D',
-        70: 'F',
-        90: 'Z',
-        88: 'X',
-        67: 'C',
-        86: 'V',
-        66: 'B',
-        89: 'Y'
+        ESC_KEY: $.ui.keyCode.ESCAPE
     };
 
     app.tools = {
@@ -80,22 +70,10 @@
                 */
 
                 $(document).keydown(function(ev){
-                    /*
-                    * This should be temporary. Right now, the app listens for keypresses
-                    * and returns a key code, which is translated by jQuery into a constant
-                    * key code across browsers. For now, I'm using the app.CONSTANTS object
-                    * to return the letter corresponding to the key. I need to figure out
-                    * a way to do this for all letters pressed.
-                    * */
-                    var whichLetter = String.fromCharCode(ev.which);
-
                     // Pass in the string corresponding to the key code to the
-                    // adding function. Make sure the key is defined first, though.
-                    if (whichLetter){
-                        app.utils.addToCell(whichLetter);
-                    } else {
-                        console.log(ev.which + ' is not in custom library.')
-                    }
+                    // adding function.
+
+                    app.utils.addToCell(String.fromCharCode(ev.which));
                 });
             })
         },
@@ -136,16 +114,27 @@
             });
         },
         calcPercent: function(whichTable, whichLetter){
-            console.log($('#percentcell' + whichLetter));
-
             /*
             * The following goes through each percentCell in the table designated
             * by the whichTable variable.
             */
-            var x = $(whichTable).find('.percentrow').find('td.percentCell');
+            var x = $(whichTable).find('.datacell').find('.cellAmount');
+            var info = x.map(function () { return $(this).val(); }).get();
+            var newPercVal;
             _.each(x, function(item){
-            })
+                var itemId = ($(item).attr('id'));
+                if (itemId.substr(-3) === 'tot'){
+                    // console.log('tot = ' + $('#' + itemId).val());
 
+                } else {
+                    newPercVal = $(item).val() / $(whichTable + ' #numcelltot').val();
+                    newPercVal = newPercVal * 100;
+                    newPercVal = newPercVal.toFixed(2) + '%';
+
+                    console.log($(whichTable + ' #percentcell' + itemId.substr(-1)).text(newPercVal));
+                }
+
+            })
         }
     };
 })(jQuery);
