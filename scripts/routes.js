@@ -17,6 +17,9 @@
             (new app.m.CounterTable()).fetch({
                 reset: true,
                 success: function(response){
+                    // Make template JSON available in the global scope
+                    app.TPLJSON = response.attributes;
+
                     /* Iterate through each of the objects. There should only be two:
                      * on for bm and one for pb.
                      */

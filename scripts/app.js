@@ -8,7 +8,6 @@
 // OTHER FUNCTIONS
 (function($){
     app.CONSTANTS = {
-        // TODO: find a library that translates key code to capital letter string
         ESC_KEY: $.ui.keyCode.ESCAPE
     };
 
@@ -53,30 +52,7 @@
     };
 
     app.utils = {
-        btnStart: function(){
-            $('#buttons').on('click', '#btnStartCount', function(){
-                console.log("Starting counting.");
 
-                /*
-                * Whenever the user clicks "Start Count," disable the button.
-                * This prevents each cunt being registered as may times as the start
-                * button is pressed. If you would like to play a practical joke on
-                * the poor user, then trigger the start button multiple times.
-                */
-                document.getElementById('btnStartCount').disabled = true;
-
-                /* Listen to keyboard keypresses. Binding to document level so that
-                 I don't have to worry about setting focus to anything.
-                */
-
-                $(document).keydown(function(ev){
-                    // Pass in the string corresponding to the key code to the
-                    // adding function.
-
-                    app.utils.addToCell(String.fromCharCode(ev.which));
-                });
-            })
-        },
         addToCell: function(whichCell){
             // This function takes the data from the listener
             // below and adds one to each cell when that button
@@ -113,13 +89,12 @@
                 })(whichTable, whichCell);
             });
         },
-        calcPercent: function(whichTable, whichLetter){
+        calcPercent: function(whichTable){
             /*
             * The following goes through each percentCell in the table designated
             * by the whichTable variable.
             */
             var x = $(whichTable).find('.datacell').find('.cellAmount');
-            var info = x.map(function () { return $(this).val(); }).get();
             var newPercVal;
             _.each(x, function(item){
                 var itemId = ($(item).attr('id'));
@@ -131,7 +106,7 @@
                     newPercVal = newPercVal * 100;
                     newPercVal = newPercVal.toFixed(2) + '%';
 
-                    console.log($(whichTable + ' #percentcell' + itemId.substr(-1)).text(newPercVal));
+                    ($(whichTable + ' #percentcell' + itemId.substr(-1)).text(newPercVal));
                 }
 
             })

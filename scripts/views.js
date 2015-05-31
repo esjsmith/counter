@@ -61,11 +61,6 @@
             this.target.append(x);
             app.tools.resetCounter(data.specimenType);
             return this;
-
-        },
-        events: {
-            // TODO: Make custom even that fires when options menu changed b/w bm and pb
-            // TODO: listenTo keypresses
         },
         mkTitleRow: function(data){
             /*
@@ -248,10 +243,11 @@
         template: Handlebars.compile($('#buttons-tpl').html()),
         initialize: function(){
             this.$el.html(this.template());
-            var specType = $('#specimenType').val();
         },
         events: {
-            'change #specimenType': 'changeType'
+            'change #specimenType': 'changeType',
+            'click #btnStartCount': 'startCount',
+            'click #btnCountDone': 'countDone'
         },
         changeType: function(){
             /*
@@ -260,7 +256,31 @@
              */
             var specType = $('#specimenType').val();
             app.tools.toggleSpecType(specType);
+        },
+        startCount: function(){
+            console.log('Starting count');
+            /*
+             * Whenever the user clicks "Start Count," disable the button.
+             * This prevents each cunt being registered as may times as the start
+             * button is pressed. If you would like to play a practical joke on
+             * the poor user, then trigger the start button multiple times.
+             */
+            document.getElementById('btnStartCount').disabled = true;
 
+            /* Listen to keyboard keypresses. Binding to document level so that
+             I don't have to worry about setting focus to anything.
+             */
+
+            $(document).keydown(function(ev){
+                // Pass in the string corresponding to the key code to the
+                // adding function.
+
+                app.utils.addToCell(String.fromCharCode(ev.which));
+            });
+        },
+        countDone: function(e){
+            e.preventDefault();
+            console.log('Count Done is clicked');
         }
     });
 
