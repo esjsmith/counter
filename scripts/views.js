@@ -280,7 +280,10 @@
         },
         countDone: function(e){
             e.preventDefault();
-            console.log('Count Done is clicked');
+            console.log(app.TPLJSON);
+            // TODO: Render templates
+            // TODO: Add class `hidden` to instructions
+            // TODO: Remove class `hidden` from template
         }
     });
 
