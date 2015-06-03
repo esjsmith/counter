@@ -9,17 +9,7 @@
 (function($){
 
     app.tools = {
-        tabbedOutput: function(){
-            $('ul.tabs li').click(function() {
-                var tab_id = $(this).attr('data-tab');
 
-                $('ul.tabs li').removeClass('current');
-                $('.tab-content').removeClass('current');
-
-                $(this).addClass('current');
-                $("#" + tab_id).addClass('current');
-            })
-        },
         resetCounter: function(specType){
             // This will allow the counters to all be set to 0
             // to start the script
@@ -129,6 +119,16 @@
             });
             // Pass this JSON object back to the calling function.
             return(outTplJson);
+        },
+        tabbedOutput: function(){
+            $('.tab-link').on('click', function(){
+                $(this).addClass('current');
+                var tab_id = $(this).attr('data-tab');
+                $(this).siblings().removeClass('current');
+                $("#" + tab_id).addClass('current')
+                    .siblings().removeClass('current');
+
+            })
         }
     };
 })(jQuery);

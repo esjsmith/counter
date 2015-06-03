@@ -153,6 +153,11 @@ ul.tabs li.current{
 	font-size: 12pt;
 }
 
+.favicon{
+    height: 16px;
+    width: 16px;
+}
+
 .effect8
 {
 	position:relative;

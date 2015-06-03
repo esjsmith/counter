@@ -3,9 +3,6 @@
 ## Description
 This is a manual differential counter for use in hematopathology practices.
 
-## Installation
-
-
 ## Instructions
 The app is relatively simple to use.
 

@@ -31,6 +31,9 @@
                         // Start the initial output table
                         new app.v.CreateOuputField(item);
                      });
+
+                    // Now, start up the tabbedOutput method to make the output area work.
+                    app.utils.tabbedOutput();
                 }
 
                 });

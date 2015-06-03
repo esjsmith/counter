@@ -155,7 +155,7 @@
             "<ul class='tabs'>" +
             "{{#each template}}" +
             "<li class='tab-link {{current}}' data-tab='tab-{{@index}}'>" +
-            "<img src='images/{{tplCode}}-favicon.png'> | " +
+            "<img src='images/{{tplCode}}-favicon.png' class='favicon'> | " +
             "{{tplName}}</li>" +
             "{{/each}}" +
             "</ul>"
@@ -200,22 +200,13 @@
             }
 
             this.render(data);
-
-        },
-        events: {
-            'click .tab-link': 'changeTab'
-        },
-        changeTab: function(){
-            console.log(this.$el.attr('data-tab'));
         },
 
         render: function(data){
             this.mkTabs(data);
             this.target.append(this.$el.html(this.html));
-
-            // Now, start up the tabbedOutput method to make the output area work.
-            // app.tools.tabbedOutput();
             app.tools.writeInstructions(this.instructHtml);
+
 
             return this;
 
