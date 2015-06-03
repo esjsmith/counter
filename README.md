@@ -6,13 +6,13 @@ This is a manual differential counter for use in hematopathology practices.
 ## Instructions
 The app is relatively simple to use.
 
-1.  Load up the app by navigating to the `index.php`.
+1.  Load up the app by navigating to the `index.html`.
 2.  Then, choose whether the count represents a peripheral blood specimen
     or a bone marrow aspirate; this choice will load a slightly different
     set of tags above the individual squares in the counter display.
 3.  Start counting. The keyboard keys corresponding to the cell type is
     displayed at the bottom of each column. The cell type this corresponds to
-    is at the tope of each column.
+    is at the top of each column.
 4.  Percentages are calculated in real time, as there is two-way data
     binding between the input boxes and the output percentage boxes.
 
@@ -20,16 +20,18 @@ The app is relatively simple to use.
 Customization can be done via the `comboTpl.json` file in the `settings` folder. 
 The parts of this JSON file are:
 
-1. `tplCode`: An easy to type code that will be used to refer to the template in
+1. `tplCode`: _Template Code_. An easy to type code that will be used to refer to the template in
     the app code.
-2. `tplName`: A descriptive (but not too long) name for the template that is rendered
+2. `tplName`: _Template Name_. A descriptive (but not too long) name for the template that is rendered
     into the tabbed output view.
-3. `specType`: For now, this only takes either `bm` ("bone marrow") or `pb` ("peripheral blood").
-    Using anything else will cause the template not to be rendered.
+3. `specType`: _Specimen Type_. By default, this contains only `pb` (peripheral blood) 
+    and `bm` (bone marrow).  Certainly, other specimen types can be made. However, the drop down
+    menu currently only knows these two types. The goal is to eventually build a drop down
+    menu that will render from the `specType`. 
 4. `outSentence`: Output sentence using a Handlebars-type format. The tags in the
     double-stashes (`{{example}}`) should match exactly the codes in the next section of the 
     tplJSON.
-5. `outCodes`: This contains JSON objects. In each `{"key": "value"}`, the key represents
+5. `outCodes`: _Output Codes_. This contains JSON objects. In each `{"key": "value"}`, the key represents
     the one letter keyboard key. The "value" represents the abbreviation biological cell type.
     This abbreviation must match the cell code abbreviation that was written into the Handlebars
     template in number 2 (`outSentence`). Sorry to use the word key to represent both the keyboard
