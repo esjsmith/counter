@@ -200,6 +200,13 @@
             }
 
             this.render(data);
+
+        },
+        events: {
+            'click .tab-link': 'changeTab'
+        },
+        changeTab: function(){
+            console.log(this.$el.attr('data-tab'));
         },
 
         render: function(data){
@@ -207,7 +214,7 @@
             this.target.append(this.$el.html(this.html));
 
             // Now, start up the tabbedOutput method to make the output area work.
-            app.tools.tabbedOutput();
+            // app.tools.tabbedOutput();
             app.tools.writeInstructions(this.instructHtml);
 
             return this;
