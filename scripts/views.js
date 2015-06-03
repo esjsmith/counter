@@ -219,7 +219,7 @@
             * there must be a `current` class. In order to do this, the script will add
             * a key: value pair of `current: 'current'` to the first entry in the
             * data.templates array of objects. The HDB template has a {{current}} tag
-            * in the approriate place that will render the word current if it is present
+            * in the appropriate place that will render the word current if it is present
             * and nothing if the word is absent.
             */
             data.templates[0]['current'] = 'current';
@@ -299,7 +299,6 @@
                 $(whichSpecType).find('.out-target').each(function(i, el){
                     // Go through each, extract the inner html, and use it as a template
                     var template = Handlebars.compile($(el).html());
-                    console.log($(el));
 
                     // Make the html with the mkOutTplJson results
                     var html = template(
@@ -313,8 +312,6 @@
                     $(el).removeClass('hidden');
                 })
             });
-            // TODO: Add class `hidden` to instructions
-            // TODO: Remove class `hidden` from template
         }
     });
 
