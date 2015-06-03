@@ -7,9 +7,6 @@
 
 // OTHER FUNCTIONS
 (function($){
-    app.CONSTANTS = {
-        ESC_KEY: $.ui.keyCode.ESCAPE
-    };
 
     app.tools = {
         tabbedOutput: function(){

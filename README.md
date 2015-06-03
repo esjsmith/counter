@@ -41,7 +41,6 @@ The parts of this JSON file are:
 
 ## Dependencies
 * jQuery version 1.11.2
-* Keypress JS library. Much thanks to David Mauro (who ever you may be) for
-creating this awesome library and for making it available under an Apache
-License. Please see [Keypress](http://dmauro.github.io/Keypress/) on GitHub
-for documentation, source code, and a demonstration of that library.
+* Backbone JS v1.2.0
+* Underscore JS v1.8.3
+* Handlebars JS v3.0.3
