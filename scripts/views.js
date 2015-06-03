@@ -285,6 +285,9 @@
         },
         countDone: function(e){
             e.preventDefault();
+            // Hide the `instruct-div`
+            $('.instruct-div').addClass('hidden');
+
             /*
             * Go through each of the specimen types, by default only `bm` and `pb`
             */
@@ -292,13 +295,24 @@
                 // For each specimen type, find the output div with that specimen type.
                 // Eg, '.output.pb'
                 var whichSpecType = '.output.' + item.specimenType;
+
                 $(whichSpecType).find('.out-target').each(function(i, el){
                     // Go through each, extract the inner html, and use it as a template
                     var template = Handlebars.compile($(el).html());
-                    app.utils.mkOutTplHtml(item.outCodes, template, item.specimenType);
+                    console.log($(el));
+
+                    // Make the html with the mkOutTplJson results
+                    var html = template(
+                        app.utils.mkOutTplJson(item.outCodes, item.specimenType)
+                    );
+
+                    // Put this into the $el html
+                    $(el).html(html);
+
+                    // Unhide this $(el)
+                    $(el).removeClass('hidden');
                 })
             });
-            // TODO: Render templates
             // TODO: Add class `hidden` to instructions
             // TODO: Remove class `hidden` from template
         }

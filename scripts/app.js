@@ -113,7 +113,7 @@
             })
         },
 
-        mkOutTplHtml: function(outCodes, hdbTpl, context){
+        mkOutTplJson: function(outCodes, context){
             // First, pick out the total from the counter table in the current
             // specimen type context
             var outTplJson = {
@@ -130,8 +130,8 @@
                         outTplJson.total * 100
                     );
             });
-            console.log(outTplJson);
-            console.log('____');
+            // Pass this JSON object back to the calling function.
+            return(outTplJson);
         }
     };
 })(jQuery);
