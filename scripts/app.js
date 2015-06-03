@@ -36,6 +36,7 @@
             $('div.instruct-div').html(instructions);
         },
         toggleSpecType: function(toType) {
+            // Hide one specimen type and show the other
             console.log('Switching to ' + toType);
             switch (toType) {
                 case 'bm':
@@ -99,7 +100,7 @@
             _.each(x, function(item){
                 var itemId = ($(item).attr('id'));
                 if (itemId.substr(-3) === 'tot'){
-                    // console.log('tot = ' + $('#' + itemId).val());
+                    // do nothing
 
                 } else {
                     newPercVal = $(item).val() / $(whichTable + ' #numcelltot').val();
@@ -110,6 +111,27 @@
                 }
 
             })
+        },
+
+        mkOutTplHtml: function(outCodes, hdbTpl, context){
+            // First, pick out the total from the counter table in the current
+            // specimen type context
+            var outTplJson = {
+                total: ($('table.' + context).find('#numcelltot').val()) * 1
+            };
+
+            // Make a JSON with the key being the template keyword and the value
+            // being the rounded, calculated percentage value
+            _.each(_.keys(outCodes), function(item){
+                outTplJson[outCodes[item]] =
+                    Math.round(
+                        $('table.' + context).find('#numcell' + item).val()
+                            /
+                        outTplJson.total * 100
+                    );
+            });
+            console.log(outTplJson);
+            console.log('____');
         }
     };
 })(jQuery);

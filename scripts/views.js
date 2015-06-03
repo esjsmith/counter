@@ -285,8 +285,19 @@
         },
         countDone: function(e){
             e.preventDefault();
-            console.log(app.TPLJSON);
-            // TODO: extract templates
+            /*
+            * Go through each of the specimen types, by default only `bm` and `pb`
+            */
+            _.each(app.TPLJSON, function(item){
+                // For each specimen type, find the output div with that specimen type.
+                // Eg, '.output.pb'
+                var whichSpecType = '.output.' + item.specimenType;
+                $(whichSpecType).find('.out-target').each(function(i, el){
+                    // Go through each, extract the inner html, and use it as a template
+                    var template = Handlebars.compile($(el).html());
+                    app.utils.mkOutTplHtml(item.outCodes, template, item.specimenType);
+                })
+            });
             // TODO: Render templates
             // TODO: Add class `hidden` to instructions
             // TODO: Remove class `hidden` from template
