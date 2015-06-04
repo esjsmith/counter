@@ -275,6 +275,8 @@
                  every time a non-character key is pressed.
                  */
                 try {
+                    // TODO: Ignore keypresses that aren't on the counter table
+                    console.log(app.TPLJSON);
                     app.utils.addToCell(String.fromCharCode(ev.which));
                 } catch(err) {
                     // do nothing
