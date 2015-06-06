@@ -5,12 +5,12 @@
 (function($){
     'use strict';
 
-    /*
-    * The counter table and the output div will be rendered twice, once with a class
-    * of `bm` and once with a class of `pb hidden`. There will be a router attached
-    * to the `button` view that will switch between the two by moving the `hidden`
-    * class around.
-    */
+    app.v.SpinnerRow = Backbone.View.extend({
+        template: Handlebars.compile($('#table-spinner-tpl').html()),
+        initialize: function(data) {
+            console.log('SpinnerRow view');
+        }
+    });
 
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',
@@ -92,7 +92,7 @@
             * those keyboard keys as the hooks for the data.
             */
 
-            this.mkSpinnerRow((_.keys(outCodes)).concat(['tot']));
+            this.mkSpinnerRow((_.keys(outCodes)));
 
             /* All is done, time to return the built up html and let the
             initialize method render stuff.
@@ -100,6 +100,7 @@
             return this;
         },
         mkSpinnerRow: function(data){
+            console.log(data);
             // The HDB model looks for a cellData key to iterate through to fill in
             // the columns, so I give it. Row name is the class of the row. Corresponds
             // to CSS.
@@ -133,8 +134,7 @@
             return this
         },
         mkKeyRow: function(data){
-            // Take off the 'tot' at the end of the array and replace with em dash
-            data.pop();
+            // Add em dash at the end of the array
             data = data.concat(['&mdash;']);
 
             // Callback that makes the bottom row

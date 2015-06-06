@@ -158,6 +158,13 @@ ul.tabs li.current{
     width: 16px;
 }
 
+input#percentcelltot::-webkit-inner-spin-button,
+#percentcelltot::-webkit-outer-spin-button, {
+    -webkit-appearance: none;
+    opacity: 0;
+    margin: 0;
+}
+
 .effect8
 {
 	position:relative;

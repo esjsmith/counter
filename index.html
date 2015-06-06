@@ -82,6 +82,9 @@
                 <input class='cellAmount' pattern="[0-9]" type='number'id='numcell{{{this}}}'>
             </td>
         {{/each}}
+            <td>
+                <input type="number" class="cellAmount" id="numcelltot" disabled/>
+            </td>
     </tr>
 </script>
 
@@ -91,6 +94,7 @@
     {{#each cellData}}
         <td id="percentcell{{{this}}}" class="percentCell"></td>
     {{/each}}
+        <td class="percentCell" id="percentcelltot"></td>
     </tr>
 </script>
 
@@ -121,25 +125,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.0/backbone-min.js"></script>
 
-<!--<script src="scripts/counter.js"></script>-->
-
-
 <script src="scripts/defines.js"></script>
 <script src="scripts/collections.js"></script>
 <script src="scripts/models.js"></script>
 <script src="scripts/views.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/routes.js"></script>
-<script>
-
-    $(document).ready(function(){
-        $('.datacell').on('change', "input[type='number']", function(){
-            console.log('here a change occureth');
-        })
-
-    })
-
-</script>
 
 </body>
 </html>
