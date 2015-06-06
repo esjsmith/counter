@@ -29,10 +29,6 @@
     </div>
 </div>
 
-<!--TODO: Render output tabbed structure then move to inside of div.body.container-->
-
-
-
 
 <!--BLOCK HDB TEMPLATE SCRIPT FOR OUTPUT-->
 <script type="text/x-handlebars-template" id="tab-output-empty">
@@ -83,7 +79,7 @@
             <td class="lbl-column">Counter:</td>
         {{#each cellData}}
             <td>
-                <input class='cellAmount' type='number'id='numcell{{{this}}}'>
+                <input class='cellAmount' pattern="[0-9]" type='number'id='numcell{{{this}}}'>
             </td>
         {{/each}}
     </tr>
@@ -137,17 +133,9 @@
 <script>
 
     $(document).ready(function(){
-        /*
-        Make the value of specimen type available in th app.v name space.
-        Change it when the value changes.
-         */
-        var element;
-        element = $('#specimenType');
-        app.v.specType = element.val();
-        element.on('change', function(ev){
-            ev.preventDefault();
-            app.v.specType = element.val();
-        });
+        $('.datacell').on('change', "input[type='number']", function(){
+            console.log('here a change occureth');
+        })
 
     })
 

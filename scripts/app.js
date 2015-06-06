@@ -101,22 +101,29 @@
         },
 
         mkOutTplJson: function(outCodes, context){
+            var numOfCells; // Will be used later. Trust me, I'm a doctor.
+
             // First, pick out the total from the counter table in the current
             // specimen type context
             var outTplJson = {
                 total: ($('table.' + context).find('#numcelltot').val()) * 1
             };
 
-            // Make a JSON with the key being the template keyword and the value
-            // being the rounded, calculated percentage value
+            /* Make a JSON with the key being the template keyword and the value
+            * being the rounded, calculated percentage value. If the value of a given biological cell
+            * is less than 1%, display `<1%` instead of 0.
+            */
             _.each(_.keys(outCodes), function(item){
-                outTplJson[outCodes[item]] =
-                    Math.round(
-                        $('table.' + context).find('#numcell' + item).val()
-                            /
-                        outTplJson.total * 100
-                    );
+                numOfCells = $('table.' + context).find('#numcell' + item).val();
+
+                if (numOfCells < 1) {
+                    outTplJson[outCodes[item]] = '<1';
+                } else {
+                    outTplJson[outCodes[item]] = Math.round(numOfCells / outTplJson.total * 100);
+                }
             });
+
+            console.log(outTplJson);
             // Pass this JSON object back to the calling function.
             return(outTplJson);
         },

@@ -21,6 +21,13 @@
         templatePercent: Handlebars.compile($('#table-percent-tpl').html()),
         target:  $('#counter-tbl'), // This is the div where the rendered tpl will go
         html: '',
+        event: {
+            'change input.cellAmount': 'aChange'
+        },
+
+        aChange: function(){
+            console.log('a change has occurred')
+        },
 
         initialize: function(data){
             var that = this;
@@ -275,9 +282,18 @@
                  every time a non-character key is pressed.
                  */
                 try {
-                    // TODO: Ignore keypresses that aren't on the counter table
-                    console.log(app.TPLJSON);
-                    app.utils.addToCell(String.fromCharCode(ev.which));
+                    /*
+                    * The following is to force ignore of any key press not defined in
+                    * template JSON. Will need to redo the TemplateJSON to have one
+                    * entry for defined key presses.
+                    */
+
+                    // Convert character code to an uppercase letter
+                    var keyPressed = (String.fromCharCode(ev.which)).toUpperCase();
+                    var definedKeys = (_.keys(app.TPLJSON[0]['outCodes']));
+                    if (definedKeys.indexOf(keyPressed) > -1){
+                        app.utils.addToCell(String.fromCharCode(ev.which));
+                    }
                 } catch(err) {
                     // do nothing
                 }
@@ -285,8 +301,10 @@
         },
         countDone: function(e){
             e.preventDefault();
-            // Hide the `instruct-div`
-            $('.instruct-div').addClass('hidden');
+            /*
+            * In order to keep the template present for future clicks, the template
+            * will remain hidden in the 'outTarget area. The compiled template will
+            * be placed into the .instruct-div.*/
 
             /*
             * Go through each of the specimen types, by default only `bm` and `pb`
@@ -305,11 +323,8 @@
                         app.utils.mkOutTplJson(item.outCodes, item.specimenType)
                     );
 
-                    // Put this into the $el html
-                    $(el).html(html);
-
-                    // Unhide this $(el)
-                    $(el).removeClass('hidden');
+                    // Put the rendered html into the sibling `.instruct-div`
+                    $(this).siblings('.instruct-div').html(html);
                 })
             });
         }
