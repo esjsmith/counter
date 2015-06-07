@@ -76,12 +76,12 @@ div.div-counter {
     border-radius: 10px;
 }
 
-.percentcell, .namecell th, .datacell {
+.percentcell, .namecell th, .dataRow {
 	background-color: white;
     border: #000000 1px solid;
 }
 
-.percentcell, .datacell, .percentrow {
+.percentcell, .dataRow, .percentrow {
     height: 23px;
     background-color: white;
 }

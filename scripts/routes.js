@@ -39,6 +39,7 @@
                 });
             // Now make buttons.
             new app.v.Buttons();
+            app.utils.watchCellNum();
         }
     }));
 

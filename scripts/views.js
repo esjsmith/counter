@@ -5,13 +5,6 @@
 (function($){
     'use strict';
 
-    app.v.SpinnerRow = Backbone.View.extend({
-        template: Handlebars.compile($('#table-spinner-tpl').html()),
-        initialize: function(data) {
-            console.log('SpinnerRow view');
-        }
-    });
-
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',
         id: 'counter',
@@ -22,7 +15,7 @@
         target:  $('#counter-tbl'), // This is the div where the rendered tpl will go
         html: '',
         event: {
-            'change input.cellAmount': 'aChange'
+            'change input': 'aChange'
         },
 
         aChange: function(){
@@ -100,13 +93,12 @@
             return this;
         },
         mkSpinnerRow: function(data){
-            console.log(data);
             // The HDB model looks for a cellData key to iterate through to fill in
             // the columns, so I give it. Row name is the class of the row. Corresponds
             // to CSS.
 
             // Finally, append the row just made to the item that has been building
-            this.html += (this.templateSpinner({rowName: 'datacell', cellData: data}));
+            this.html += (this.templateSpinner({rowName: 'dataRow', cellData: data}));
 
             // Make the percent output row.
 
@@ -275,6 +267,7 @@
             /* Listen to keyboard keypresses. Binding to document level so that
              I don't have to worry about setting focus to anything.
              */
+            app.utils.watchCellNum();
 
             $(document).keydown(function(ev){
                 /* Pass in the string corresponding to the key code to the

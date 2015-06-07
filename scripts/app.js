@@ -72,6 +72,8 @@
                     curTot = totCell.val();
                     newTot = curTot * 1 + 1;
                     totCell.val(newTot);
+
+                    $('.dataRow').trigger('input');
                     app.utils.calcPercent(whichTable, whichCell);
 
                 })(whichTable, whichCell);
@@ -82,7 +84,7 @@
             * The following goes through each percentCell in the table designated
             * by the whichTable variable.
             */
-            var x = $(whichTable).find('.datacell').find('.cellAmount');
+            var x = $(whichTable).find('.dataRow').find('.cellAmount');
             var newPercVal;
             _.each(x, function(item){
                 var itemId = ($(item).attr('id'));
@@ -135,6 +137,11 @@
                 $("#" + tab_id).addClass('current')
                     .siblings().removeClass('current');
 
+            })
+        },
+        watchCellNum: function(){
+            $('.dataRow').on('input', function(){
+                console.log('a change occurred');
             })
         }
     };
