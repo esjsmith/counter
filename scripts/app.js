@@ -74,7 +74,7 @@
                     totCell.val(newTot);
 
                     $('.dataRow').trigger('input');
-                    app.utils.calcPercent(whichTable, whichCell);
+                    // app.utils.calcPercent(whichTable, whichCell);
 
                 })(whichTable, whichCell);
             });
