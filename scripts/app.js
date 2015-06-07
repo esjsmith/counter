@@ -13,7 +13,7 @@
         resetCounter: function(specType){
             // This will allow the counters to all be set to 0
             // to start the script
-            var x = 'table.' + specType;
+            var x = 'table#' + specType;
             $(x).find('.cellAmount').val(0);
             $(x).find('.percentCell').text(0);
             $(x).find('#percentcelltot').text('100%');
@@ -52,9 +52,8 @@
             * over each of them and run through this method twice.
             * */
 
-            // TODO: create the specTypes array from the model that loads from templates.json
             _.each(app.TPLJSON, function(item){
-                var whichTable = 'table.' + item.specimenType;
+                var whichTable = 'table#' + item.specimenType;
                 (function (whichTable, whichCell){
                     var curAmount, newAmount, curTot, newTot, totCell, wchCellStr, findCell;
                     wchCellStr = "#numcell" + whichCell.toUpperCase();
@@ -146,8 +145,8 @@
         watchCellNum: function(){
             var that = this;
             $('.dataRow').on('input', function(event){
-                var x = event.target.closest('table#counter');
-                console.log(x.id());
+                var x = event.target.closest('table.counter');
+                console.log(x.attr('id'));
                 _.each(app.TPLJSON, function(item){
                     that.calcPercent(item.specimenType);
                 });
