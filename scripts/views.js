@@ -7,7 +7,7 @@
 
     app.v.MakeTable = Backbone.View.extend({
         tagName: 'table',
-        id: 'counter',
+        className: 'table counter',
         template: Handlebars.compile($('#table-row-tpl').html()),
         templateHead: Handlebars.compile($('#table-head-tpl').html()),
         templateSpinner: Handlebars.compile($('#table-spinner-tpl').html()),
@@ -33,14 +33,14 @@
              * initializes the className of the element of your View only once time during the
              * _ensureElement method.
              * */
+
             switch (specType){
                 case 'bm':
-                    this.$el.attr('class', 'table bm');
-                    that.className = 'table bm';
+                    this.$el.attr('id', specType);
                     break;
                 case 'pb':
-                    this.$el.attr('class', 'table pb hidden');
-                    that.className = 'table pb hidden';
+                    this.$el.attr('class', this.$el.attr('class') + ' hidden');
+                    this.$el.attr('id', specType);
                     break;
                 default :
                     console.log('Error! `' + specType + '` is not a valid specimen type!');

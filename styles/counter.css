@@ -15,7 +15,7 @@ h1#man-diff-title {
     color: lightgoldenrodyellow;
 }
 
-table#counter, label {
+table.counter, label {
     text-align: center;
     position: relative;
     margin-left: auto;
@@ -94,7 +94,7 @@ div.output, #output-here {
 	margin-bottom: 3em;
 }
 
-table#counter{
+table.counter{
     padding: 10px 0 5px 0;
     border-collapse: separate;
     border-spacing: 2px;

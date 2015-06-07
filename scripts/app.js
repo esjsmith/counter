@@ -53,9 +53,8 @@
             * */
 
             // TODO: create the specTypes array from the model that loads from templates.json
-            var specTypes = ['bm', 'pb'];
-            _.each(specTypes, function(item){
-                var whichTable = 'table.' + item;
+            _.each(app.TPLJSON, function(item){
+                var whichTable = 'table.' + item.specimenType;
                 (function (whichTable, whichCell){
                     var curAmount, newAmount, curTot, newTot, totCell, wchCellStr, findCell;
                     wchCellStr = "#numcell" + whichCell.toUpperCase();
@@ -73,11 +72,16 @@
                     newTot = curTot * 1 + 1;
                     totCell.val(newTot);
 
-                    $('.dataRow').trigger('input');
                     // app.utils.calcPercent(whichTable, whichCell);
 
                 })(whichTable, whichCell);
             });
+
+            /* Trigger an 'input' even each time a cell content is changed.
+            * This will be listened for later on. Whenever an input is triggered
+            * on this row, then, the calcPercent function is called.
+            * */
+            $('.dataRow').trigger('input');
         },
         calcPercent: function(whichTable){
             /*
@@ -140,8 +144,13 @@
             })
         },
         watchCellNum: function(){
-            $('.dataRow').on('input', function(){
-                console.log('a change occurred');
+            var that = this;
+            $('.dataRow').on('input', function(event){
+                var x = event.target.closest('table#counter');
+                console.log(x.id());
+                _.each(app.TPLJSON, function(item){
+                    that.calcPercent(item.specimenType);
+                });
             })
         }
     };
