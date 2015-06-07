@@ -87,22 +87,25 @@
             * The following goes through each percentCell in the table designated
             * by the whichTable variable.
             */
-            var x = $(whichTable).find('.dataRow').find('.cellAmount');
+            var x = $('table#' + whichTable).find('.dataRow').find('.cellAmount');
             var newPercVal;
             _.each(x, function(item){
                 var itemId = ($(item).attr('id'));
+                console.log(itemId);
                 if (itemId.substr(-3) === 'tot'){
                     // do nothing
 
                 } else {
-                    newPercVal = $(item).val() / $(whichTable + ' #numcelltot').val();
+                    var y = 'table#' + whichTable;
+                    newPercVal = $(item).val() / $(y).find('#numcelltot').val();
                     newPercVal = newPercVal * 100;
                     newPercVal = newPercVal.toFixed(2) + '%';
+                    console.log(newPercVal);
 
-                    ($(whichTable + ' #percentcell' + itemId.substr(-1)).text(newPercVal));
+                    ($(y + ' #percentcell' + itemId.substr(-1)).text(newPercVal));
                 }
 
-            })
+            });
         },
 
         mkOutTplJson: function(outCodes, context){
@@ -143,10 +146,13 @@
             })
         },
         watchCellNum: function(){
+            /* This method is called when there is an 'input' state triggered. This is done
+            * by default if the user uses the spinners to change the input value in any of the
+            * number cells. An 'input' is triggered by code on the .datarow by code in the
+            * addToCell method.*/
             var that = this;
             $('.dataRow').on('input', function(event){
                 var x = event.target.closest('table.counter');
-                console.log(x.attr('id'));
                 _.each(app.TPLJSON, function(item){
                     that.calcPercent(item.specimenType);
                 });
