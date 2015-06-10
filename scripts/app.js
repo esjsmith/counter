@@ -52,6 +52,8 @@
             * over each of them and run through this method twice.
             * */
 
+            // TODO: make increasing numcelltot from increasing all other numcells.
+
             _.each(app.TPLJSON, function(item){
                 var whichTable = 'table#' + item.specimenType;
                 (function (whichTable, whichCell){
@@ -65,13 +67,12 @@
                     findCell.val("");
                     findCell.val(newAmount);
 
-                    // Increase the total cell by one
+                   /* // Increase the total cell by one
                     totCell = $(whichTable).find('#numcelltot');
                     curTot = totCell.val();
                     newTot = curTot * 1 + 1;
-                    totCell.val(newTot);
+                    totCell.val(newTot);*/
 
-                    // app.utils.calcPercent(whichTable, whichCell);
 
                 })(whichTable, whichCell);
             });
@@ -91,7 +92,6 @@
             var newPercVal;
             _.each(x, function(item){
                 var itemId = ($(item).attr('id'));
-                console.log(itemId);
                 if (itemId.substr(-3) === 'tot'){
                     // do nothing
 
@@ -100,8 +100,6 @@
                     newPercVal = $(item).val() / $(y).find('#numcelltot').val();
                     newPercVal = newPercVal * 100;
                     newPercVal = newPercVal.toFixed(2) + '%';
-                    console.log(newPercVal);
-
                     ($(y + ' #percentcell' + itemId.substr(-1)).text(newPercVal));
                 }
 
@@ -114,15 +112,16 @@
             // First, pick out the total from the counter table in the current
             // specimen type context
             var outTplJson = {
-                total: ($('table.' + context).find('#numcelltot').val()) * 1
+                total: ($('table#' + context).find('#numcelltot').val()) * 1
             };
+
 
             /* Make a JSON with the key being the template keyword and the value
             * being the rounded, calculated percentage value. If the value of a given biological cell
             * is less than 1%, display `<1%` instead of 0.
             */
             _.each(_.keys(outCodes), function(item){
-                numOfCells = $('table.' + context).find('#numcell' + item).val();
+                numOfCells = $('table#' + context).find('#numcell' + item).val();
 
                 if (numOfCells < 1) {
                     outTplJson[outCodes[item]] = '<1';
@@ -131,7 +130,6 @@
                 }
             });
 
-            console.log(outTplJson);
             // Pass this JSON object back to the calling function.
             return(outTplJson);
         },
@@ -151,10 +149,38 @@
             * number cells. An 'input' is triggered by code on the .datarow by code in the
             * addToCell method.*/
             var that = this;
+
+
+            // TODO: if spinner, then increase numcelltot on both pb an bm
+            // TODO: once that is done, fire off calc percent for both pb and bm
             $('.dataRow').on('input', function(event){
-                var x = event.target.closest('table.counter');
+
+                var target = $(event.target);
+                if (target.is('input')) {
+                    target = target.closest('tr').find('#numcelltot');
+                    target.val(target.val() * 1 + 1);
+                    app.utils.totCellValue();
+
+                } else {
+                    target = target.find('#numcelltot');
+                    target.val(target.val() * 1 + 1);
+                    app.utils.totCellValue();
+                }
+                /* Increase numcelltot by one in both pb and bm
+                 * */
                 _.each(app.TPLJSON, function(item){
+
                     that.calcPercent(item.specimenType);
+                });
+            });
+        },
+        totCellValue: function(){
+            var that = this;
+            _.each(app.TPLJSON, function(item){
+                var total = 0;
+                var target = $('table#' + item.specimenType).find('.cellAmount');
+                target.each(function(i, item){
+                    total =+ $(item).val();
                 });
             })
         }
